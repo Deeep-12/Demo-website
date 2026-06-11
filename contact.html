@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organic Garden | Contact Us &amp; Lifetime Growing Support</title>
+  <meta name="description" content="Get in touch with the Organic Garden support team. Submit a message for expert horticultural advice, shipping inquiries, or browse our comprehensive growing FAQ list.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Contact Specific Styles */
+    .contact-hero {
+      background: linear-gradient(135deg, var(--accent-sky) 0%, var(--primary-pastel) 100%);
+      padding: 100px 0 var(--spacing-xl);
+      text-align: center;
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--spacing-xl);
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .contact-card-box {
+      background-color: var(--bg-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-item {
+      display: flex;
+      gap: var(--spacing-md);
+      align-items: flex-start;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background-color: var(--primary-pastel);
+      color: var(--primary-forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* FAQ Accordion Styling */
+    .faq-section {
+      background-color: var(--bg-cream);
+      padding: var(--spacing-xxl) 0;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .faq-accordion {
+      max-width: 800px;
+      margin: var(--spacing-xl) auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .faq-item {
+      background-color: var(--bg-white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+      transition: var(--transition-normal);
+    }
+
+    .faq-trigger {
+      width: 100%;
+      padding: var(--spacing-lg);
+      text-align: left;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--primary-forest);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .faq-trigger svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--primary-sage);
+      stroke-width: 2.5;
+      fill: none;
+      transition: var(--transition-normal);
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .faq-content-inner {
+      padding: 0 var(--spacing-lg) var(--spacing-lg);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .faq-item.active {
+      box-shadow: var(--shadow-sm);
+      border-color: var(--primary-sage);
+    }
+
+    .faq-item.active .faq-trigger svg {
+      transform: rotate(180deg);
+      stroke: var(--primary-forest);
+    }
+
+    .faq-item.active .faq-content {
+      max-height: 200px; /* Arbitrary enough value for transition */
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container header__nav">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" width="32" height="32">
+          <path d="M12 2C8 6.5 4 9 4 13a8 8 0 0 0 16 0c0-4-4-6.5-8-11z" fill="rgba(136, 178, 153, 0.4)"></path>
+          <path d="M12 22C6.48 22 2 17.52 2 12c0-3.1 1.7-6.07 4.45-8A1 1 0 0 1 7.7 5.5l-3.3 2.4C3.5 8.7 3 10.3 3 12c0 4.96 4.04 9 9 9s9-4.04 9-9c0-1.7-.5-3.3-1.4-4.1l-3.3-2.4a1 1 0 0 1 1.25-1.56C20.3 6 22 8.9 22 12c0 5.52-4.48 10-10 10z" fill="currentColor"></path>
+          <path d="M12 18v-8M9 13l3-3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>organic garden</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" id="link-home">Home</a></li>
+          <li><a href="products.html" id="link-products">Products</a></li>
+          <li><a href="about.html" id="link-about">About Us</a></li>
+          <li><a href="contact.html" id="link-contact" class="active">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a href="cart.html" class="cart-btn" id="cart-btn" aria-label="Shopping Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge">0</span>
+        </a>
+        <div class="menu-toggle" id="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contact Hero Section -->
+  <section class="contact-hero animate-fade-in-up">
+    <div class="container">
+      <h1 style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: var(--spacing-xs);">Lifetime Growing Support</h1>
+      <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Struggling with germination, repotting, or soil balance? Connect with our expert horticulturists for assistance.</p>
+    </div>
+  </section>
+
+  <!-- Contact Form & Info Grid -->
+  <main class="container" style="margin-top: var(--spacing-xl);">
+    <div class="contact-grid">
+      
+      <!-- Contact Form Block -->
+      <div class="contact-card-box animate-fade-in-up">
+        <h2 style="font-size: 1.8rem; margin-bottom: var(--spacing-md); font-family: var(--font-sans); font-weight: 800;">Write to Our Greenhouse</h2>
+        <p style="color: var(--text-muted); margin-bottom: var(--spacing-xl);">Send us a message and our stewards will review and reply within 24 working hours.</p>
+        
+        <form id="contact-us-form" novalidate>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); margin-bottom: var(--spacing-md);">
+            <!-- Name -->
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="form-name" class="form-label">Full Name</label>
+              <input type="text" id="form-name" class="form-input" placeholder="Eleanor Rose" required>
+              <div class="form-error-msg" id="error-name" style="display: none;">Name must be at least 2 characters.</div>
+            </div>
+            
+            <!-- Email -->
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="form-email" class="form-label">Email Address</label>
+              <input type="email" id="form-email" class="form-input" placeholder="eleanor@domain.com" required>
+              <div class="form-error-msg" id="error-email" style="display: none;">Please provide a valid email.</div>
+            </div>
+          </div>
+
+          <!-- Subject -->
+          <div class="form-group">
+            <label for="form-subject" class="form-label">Subject Inquiry</label>
+            <select id="form-subject" class="form-input" style="cursor: pointer; appearance: none; -webkit-appearance: none;">
+              <option value="advice">Expert Gardening &amp; Soil Advice</option>
+              <option value="seeds">Seed Viability &amp; Sourcing Info</option>
+              <option value="shipping">Delivery &amp; Packaging Inquiries</option>
+              <option value="wholesale">Wholesale &amp; Community Greening</option>
+            </select>
+          </div>
+
+          <!-- Message -->
+          <div class="form-group">
+            <label for="form-message" class="form-label">Message Details</label>
+            <textarea id="form-message" class="form-input" style="min-height: 140px; resize: vertical;" placeholder="Tell us about your pots, soil condition, or any specific order numbers..." required></textarea>
+            <div class="form-error-msg" id="error-message" style="display: none;">Message detail must be at least 10 characters.</div>
+          </div>
+
+          <button type="submit" class="btn btn--primary" style="width: 100%;" id="contact-submit-btn">Send Botanical Inquiry</button>
+        </form>
+      </div>
+
+      <!-- Contact Details Block -->
+      <div style="display: flex; flex-direction: column; gap: var(--spacing-lg);">
+        
+        <div class="contact-card-box animate-fade-in-up" style="animation-delay: 0.1s;">
+          <h3 style="font-size: 1.4rem; margin-bottom: var(--spacing-lg);">The Nursery HQ</h3>
+          
+          <!-- Info 1 -->
+          <div class="info-item">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div>
+              <h4 style="font-size: 0.95rem; font-family: var(--font-sans); font-weight: 700;">Our Location</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">45 Greenhouse Way, Sage Fields, CA 94025</p>
+            </div>
+          </div>
+
+          <!-- Info 2 -->
+          <div class="info-item">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </div>
+            <div>
+              <h4 style="font-size: 0.95rem; font-family: var(--font-sans); font-weight: 700;">Horticulture Support</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">+1 (800) 555-GROW (4769)<br><span style="font-size: 0.8rem; color: var(--primary-sage);">Mon - Fri: 9:00 AM - 5:00 PM EST</span></p>
+            </div>
+          </div>
+
+          <!-- Info 3 -->
+          <div class="info-item">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <div>
+              <h4 style="font-size: 0.95rem; font-family: var(--font-sans); font-weight: 700;">Email Support</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">steward@organicgarden.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom high-fidelity inline-SVG Vector Map -->
+        <div class="contact-card-box animate-fade-in-up" style="animation-delay: 0.2s; padding: var(--spacing-sm); overflow: hidden;">
+          <svg viewBox="0 0 280 180" width="100%" height="auto" style="border-radius: var(--radius-md); background-color: var(--primary-pastel);">
+            <!-- Styled grid paths for street design -->
+            <path d="M 0,40 L 280,40" stroke="#FFF" stroke-width="6" opacity="0.6" />
+            <path d="M 0,130 L 280,130" stroke="#FFF" stroke-width="8" opacity="0.6" />
+            <path d="M 80,0 L 80,180" stroke="#FFF" stroke-width="6" opacity="0.6" />
+            <path d="M 210,0 L 210,180" stroke="#FFF" stroke-width="10" opacity="0.6" />
+            <path d="M 0,80 Q 140,80 280,110" stroke="#FFF" stroke-width="4" opacity="0.6" />
+            
+            <!-- Greenery/Park area SVG -->
+            <rect x="92" y="52" width="105" height="66" rx="4" fill="#BAD9C7" opacity="0.8" />
+            <text x="145" y="88" fill="#1F3F30" font-family="var(--font-sans)" font-size="9" font-weight="700" text-anchor="middle">SAGE PARK</text>
+            
+            <!-- Our HQ Location Pin and Circle -->
+            <circle cx="210" cy="80" r="16" fill="rgba(31, 63, 48, 0.2)" />
+            <circle cx="210" cy="80" r="8" fill="rgba(31, 63, 48, 0.4)" />
+            <!-- Pin Graphic -->
+            <path d="M 210,80 C 206,75, 206,70, 210,66 C 214,70, 214,75, 210,80 Z" fill="#D06B62" stroke="#1F3F30" stroke-width="1.5" />
+            <circle cx="210" cy="71" r="2.5" fill="#FFF" />
+            
+            <!-- Location Label Bubble -->
+            <rect x="155" y="118" width="110" height="20" rx="3" fill="#1F3F30" />
+            <polygon points="210,138 214,142 218,138" fill="#1F3F30" />
+            <text x="210" y="131" fill="#FFF" font-family="var(--font-sans)" font-size="8" font-weight="700" text-anchor="middle">Organic Garden HQ</text>
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Interactive Accordion FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <h2 style="font-size: 2.2rem; margin-bottom: var(--spacing-sm);">Growing Answers</h2>
+        <p style="color: var(--text-muted);">Quick resolutions to common concerns about seed propagation, plant wellness, and deliveries.</p>
+      </div>
+
+      <div class="faq-accordion">
+        
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <span>What is your seeds Germination Guarantee?</span>
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              We stand behind a 90-day dynamic replacement guarantee. All seed lots are laboratory tested for a minimum of 85% germination. If you follow our custom sowing instructions and they fail to sprout, simply reach out to us and we'll ship out a replacement batch at zero cost to you.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <span>How are live plants shipped securely?</span>
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              Our live plants are secured using thermodynamic, plant-safe modular boxes that keep moisture inside the root mass while providing optimal airflow. We wrap the biodegradable terracotta pots in recycled cellulose sleeves to prevent any cracking or soil shifting.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <span>Are all of your seeds certified non-GMO?</span>
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              Yes, 100% of our products are strictly non-hybrid, open-pollinated, non-GMO, and organic. We adhere strictly to safe agricultural seed pledges, banking only traditional wild flower types and natural heirloom garden varieties.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            <span>Do you offer wholesale options for school nurseries?</span>
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content-inner">
+              We love partnering with local institutions! We offer tailored school seed programs, custom potting soil packages, and wholesale botanical discounts (up to 40% off) for educational greenhouse centers, community gardens, and registered environmental nonprofits.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo" style="color: var(--bg-cream);">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M12 2C8 6.5 4 9 4 13a8 8 0 0 0 16 0c0-4-4-6.5-8-11z"></path>
+            </svg>
+            <span style="color: var(--bg-white);">organic garden</span>
+          </a>
+          <p class="footer-brand__desc">Promoting urban biodiversity, sustainable home cultivation, and organic green lifestyles with meticulously tested botanical products.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"></path></svg>
+            </a>
+            <a href="#" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24"><path d="M8 22a9 9 0 0 1-5.36-1.64c-.1-.08-.12-.24-.04-.34.33-.42.92-1.28 1.25-1.92.5-.96.83-2.13.97-3.07a8.5 8.5 0 0 1-.82-3.6c0-3.3 2.1-5.93 5-5.93 1.34 0 2.6.53 3.55 1.48S14 9.16 14 10.5c0 2.22-1.2 3.8-3 3.8-1 0-1.85-.75-1.85-1.75a2.2 2.2 0 0 1 .53-1.4l1.1-2.58a.8.8 0 0 0-.78-1.07c-1.12 0-2 1.22-2 2.76 0 .8.2 1.45.54 1.9L7.22 17c-.3 1-.7 2.37-.93 3.23a8.9 8.9 0 0 0 1.7 1.77c.1.07.1.23 0 .3-.43.3-.92.6-1.4.8A7.8 7.8 0 0 1 8 22z"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Sitemap</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Seed &amp; Plant Catalog</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Support &amp; Help</h4>
+          <ul class="footer-links">
+            <li><a href="about.html#values">Sustainability Mission</a></li>
+            <li><a href="contact.html#faq">Growing Guides (FAQ)</a></li>
+            <li><a href="contact.html">Lifetime Assistance</a></li>
+            <li><a href="#">Shipping &amp; Returns Policy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Cultivate Community</h4>
+          <p class="footer-newsletter__desc">Sign up for seasonal greenhouse news, plant care schedules, and 10% off your initial order.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your Email Address" required aria-label="Email address for newsletter">
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Organic Garden. All rights reserved. Created with love for organic agriculture.</p>
+        <p>Aesthetic Pastel Green Brand &bull; Professional Quality</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    // 1. FAQ Accordion Click Handler
+    document.querySelectorAll('.faq-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.faq-item');
+        const isActive = item.classList.contains('active');
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-item').forEach(el => {
+          el.classList.remove('active');
+          el.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isActive) {
+          item.classList.add('active');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // 2. High Fidelity Interactive Form Validation
+    const contactForm = document.getElementById('contact-us-form');
+    const nameInput = document.getElementById('form-name');
+    const emailInput = document.getElementById('form-email');
+    const messageInput = document.getElementById('form-message');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      // Validate Name
+      if (nameInput.value.trim().length < 2) {
+        nameInput.classList.add('error');
+        document.getElementById('error-name').style.display = 'block';
+        isValid = false;
+      } else {
+        nameInput.classList.remove('error');
+        document.getElementById('error-name').style.display = 'none';
+      }
+
+      // Validate Email (simple regex)
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailInput.value.trim())) {
+        emailInput.classList.add('error');
+        document.getElementById('error-email').style.display = 'block';
+        isValid = false;
+      } else {
+        emailInput.classList.remove('error');
+        document.getElementById('error-email').style.display = 'none';
+      }
+
+      // Validate Message length
+      if (messageInput.value.trim().length < 10) {
+        messageInput.classList.add('error');
+        document.getElementById('error-message').style.display = 'block';
+        isValid = false;
+      } else {
+        messageInput.classList.remove('error');
+        document.getElementById('error-message').style.display = 'none';
+      }
+
+      if (isValid) {
+        // Success Modal Popup!
+        window.showNotificationModal(
+          'Inquiry Received!',
+          `Thank you for contacting us, <strong>${nameInput.value.trim()}</strong>. Your garden support ticket has been registered. One of our master horticulturists will review your message regarding <strong>${document.getElementById('form-subject').selectedOptions[0].text}</strong> and respond within 24 hours.`
+        );
+        contactForm.reset();
+      }
+    });
+
+    // Clear validation styling when inputs are modified
+    [nameInput, emailInput, messageInput].forEach(input => {
+      input.addEventListener('input', () => {
+        input.classList.remove('error');
+        const errId = `error-${input.id.split('-').pop()}`;
+        document.getElementById(errId).style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>

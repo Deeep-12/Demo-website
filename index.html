@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organic Garden | Premium Seeds, Live Plants & Gardening Essentials</title>
+  <meta name="description" content="Cultivate your perfect green space with Organic Garden. Explore our hand-selected seeds, vibrant plants, and professional-grade organic gardening essentials.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container header__nav">
+      <a href="index.html" class="logo" id="nav-logo">
+        <svg viewBox="0 0 24 24" width="32" height="32">
+          <path d="M12 2C8 6.5 4 9 4 13a8 8 0 0 0 16 0c0-4-4-6.5-8-11z" fill="rgba(136, 178, 153, 0.4)"></path>
+          <path d="M12 22C6.48 22 2 17.52 2 12c0-3.1 1.7-6.07 4.45-8A1 1 0 0 1 7.7 5.5l-3.3 2.4C3.5 8.7 3 10.3 3 12c0 4.96 4.04 9 9 9s9-4.04 9-9c0-1.7-.5-3.3-1.4-4.1l-3.3-2.4a1 1 0 0 1 1.25-1.56C20.3 6 22 8.9 22 12c0 5.52-4.48 10-10 10z" fill="currentColor"></path>
+          <path d="M12 18v-8M9 13l3-3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>organic garden</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" id="link-home" class="active">Home</a></li>
+          <li><a href="products.html" id="link-products">Products</a></li>
+          <li><a href="about.html" id="link-about">About Us</a></li>
+          <li><a href="contact.html" id="link-contact">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a href="cart.html" class="cart-btn" id="cart-btn" aria-label="Shopping Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge">0</span>
+        </a>
+        <div class="menu-toggle" id="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero animate-fade-in-up">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-tagline">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="2" fill="none"></path>
+            <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+          <span>Sustainably Cultivated</span>
+        </div>
+        <h1>Bring Life &amp; Color to Your Living Spaces</h1>
+        <p class="hero-desc">Discover our premium range of organic non-GMO heirloom seeds, vibrant plants, and aesthetic gardening essentials designed for both beginner growers and master horticulturists.</p>
+        <div class="hero-actions">
+          <a href="products.html" class="btn btn--primary" id="hero-cta-shop">Shop Our Collection</a>
+          <a href="about.html" class="btn btn--secondary" id="hero-cta-about">Our Story</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image__circle"></div>
+        <img src="assets/hero_garden.png" alt="Organic Garden Sunlit Conservatory" class="hero-illustration" style="border-radius: var(--radius-lg); object-fit: cover;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section style="padding: var(--spacing-xxl) 0; background-color: var(--bg-white);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: var(--spacing-xxl); max-width: 600px; margin-right: auto; margin-left: auto;">
+        <h2 style="font-size: 2.2rem; margin-bottom: var(--spacing-md);">Cultivate Your Intentional Garden</h2>
+        <p style="color: var(--text-muted);">From heirloom flower seeds to specialized tools, we have handpicked everything you need to create your sustainable oasis.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--spacing-lg);" id="categories-grid">
+        
+        <!-- Category Item 1 -->
+        <div class="category-card category-card--flowers" onclick="window.location.href='products.html?cat=Flowers'">
+          <div class="category-card__icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 5a3 3 0 1 0 0 6M12 19a3 3 0 1 0 0-6M5 12a3 3 0 1 0 6 0M19 12a3 3 0 1 0-6 0"></path>
+            </svg>
+          </div>
+          <div class="category-card__info">
+            <h3>Flower Seeds</h3>
+            <p>Vibrant blooms, pollinators &amp; perennials</p>
+          </div>
+          <div class="category-card__arrow">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          </div>
+        </div>
+
+        <!-- Category Item 2 -->
+        <div class="category-card category-card--seeds" onclick="window.location.href='products.html?cat=Vegetables'">
+          <div class="category-card__icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"></path>
+              <circle cx="8" cy="10" r="1.5"></circle>
+              <circle cx="16" cy="10" r="1.5"></circle>
+              <circle cx="12" cy="14" r="1.5"></circle>
+            </svg>
+          </div>
+          <div class="category-card__info">
+            <h3>Vegetable Seeds</h3>
+            <p>High-yield non-GMO garden crops</p>
+          </div>
+          <div class="category-card__arrow">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          </div>
+        </div>
+
+        <!-- Category Item 3 -->
+        <div class="category-card category-card--plants" onclick="window.location.href='products.html?cat=Plants'">
+          <div class="category-card__icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <div class="category-card__info">
+            <h3>Live Plants</h3>
+            <p>Potted herbs, succulents &amp; house plants</p>
+          </div>
+          <div class="category-card__arrow">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          </div>
+        </div>
+
+        <!-- Category Item 4 -->
+        <div class="category-card category-card--essentials" onclick="window.location.href='products.html?cat=Essentials'">
+          <div class="category-card__icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22a9 9 0 0 1 0-18M12 4a9 9 0 0 1 0 18M12 12h.01"></path>
+              <path d="M8 8.2A9 9 0 0 1 12 4v8H4a9 9 0 0 1 4-3.8z" fill="rgba(31,63,48,0.1)"></path>
+            </svg>
+          </div>
+          <div class="category-card__info">
+            <h3>Essentials</h3>
+            <p>Organic nutrients, tools &amp; soils</p>
+          </div>
+          <div class="category-card__arrow">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Curated Best Sellers Section -->
+  <section style="padding: var(--spacing-xxl) 0; background-color: var(--bg-cream);">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--spacing-xxl); flex-wrap: wrap; gap: var(--spacing-md);">
+        <div>
+          <h2 style="font-size: 2.2rem; margin-bottom: var(--spacing-sm);">Seasonal Favorites</h2>
+          <p style="color: var(--text-muted); max-width: 500px;">Our most-loved, high-germination plants and seeds of the week, highly recommended by our gardeners.</p>
+        </div>
+        <a href="products.html" class="btn btn--outline" id="home-view-all-btn">View Full Catalog</a>
+      </div>
+
+      <!-- Best Sellers Product Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--spacing-lg);" id="best-sellers-container">
+        <!-- Products will be injected via JS or written in high-fidelity directly. Let's write them in direct high-fidelity to guarantee gorgeous layout even without JS execution, and bind them with JS! -->
+        
+        <!-- Product 1 -->
+        <article class="product-card">
+          <span class="product-card__badge product-card__badge--popular">Heirloom</span>
+          <div class="product-card__image-container">
+            <img src="assets/lavender_seeds.png" alt="French Lavender Seeds" class="product-art" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-md);" />
+          </div>
+          <div class="product-card__details">
+            <span class="product-card__category">Seeds</span>
+            <h3 class="product-card__title">French Lavender Seeds</h3>
+            <div class="product-card__rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <span>4.9 (128 reviews)</span>
+            </div>
+            <div class="product-card__footer">
+              <span class="product-card__price">₹149.00</span>
+              <button class="add-to-cart-btn" data-id="p1" data-name="French Lavender Seeds" data-price="149.00" data-category="Seeds" aria-label="Add Lavender Seeds to Cart">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product-card">
+          <span class="product-card__badge">Bestseller</span>
+          <div class="product-card__image-container">
+            <img src="assets/calathea_plant.png" alt="Stripe-Leafed Calathea" class="product-art" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-md);" />
+          </div>
+          <div class="product-card__details">
+            <span class="product-card__category">Plants</span>
+            <h3 class="product-card__title">Stripe-Leafed Calathea</h3>
+            <div class="product-card__rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <span>4.8 (94 reviews)</span>
+            </div>
+            <div class="product-card__footer">
+              <span class="product-card__price">₹799.00</span>
+              <button class="add-to-cart-btn" data-id="p2" data-name="Stripe-Leafed Calathea" data-price="799.00" data-category="Plants" aria-label="Add Calathea to Cart">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product-card">
+          <span class="product-card__badge product-card__badge--popular">Organic</span>
+          <div class="product-card__image-container">
+            <img src="assets/basil_seeds.png" alt="Organic Sweet Basil Seeds" class="product-art" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-md);" />
+          </div>
+          <div class="product-card__details">
+            <span class="product-card__category">Seeds</span>
+            <h3 class="product-card__title">Organic Sweet Basil Seeds</h3>
+            <div class="product-card__rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <span>5.0 (202 reviews)</span>
+            </div>
+            <div class="product-card__footer">
+              <span class="product-card__price">₹99.00</span>
+              <button class="add-to-cart-btn" data-id="p3" data-name="Organic Sweet Basil Seeds" data-price="99.00" data-category="Seeds" aria-label="Add Basil Seeds to Cart">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 4 -->
+        <article class="product-card">
+          <span class="product-card__badge">Eco Friendly</span>
+          <div class="product-card__image-container">
+            <img src="assets/watering_can.png" alt="Classic Brass Watering Can" class="product-art" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-md);" />
+          </div>
+          <div class="product-card__details">
+            <span class="product-card__category">Essentials</span>
+            <h3 class="product-card__title">Classic Brass Watering Can</h3>
+            <div class="product-card__rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <span>4.7 (78 reviews)</span>
+            </div>
+            <div class="product-card__footer">
+              <span class="product-card__price">₹1,299.00</span>
+              <button class="add-to-cart-btn" data-id="p4" data-name="Classic Brass Watering Can" data-price="1299.00" data-category="Essentials" aria-label="Add Watering Can to Cart">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values / Why Choose Us Section -->
+  <section style="padding: var(--spacing-xxl) 0; background-color: var(--bg-white);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-xl); align-items: center;">
+        
+        <!-- Graphic Panel Left -->
+        <div style="background-color: var(--primary-pastel); padding: var(--spacing-xl); border-radius: var(--radius-lg); position: relative; overflow: hidden; border: 1px solid var(--border-light);">
+          <span style="font-family: var(--font-serif); font-size: 6rem; color: rgba(31, 63, 48, 0.05); position: absolute; top: -20px; right: 10px; font-weight: 900; line-height: 1;">organic</span>
+          <h3 style="font-size: 2rem; margin-bottom: var(--spacing-md); line-height: 1.3;">Sprouting a Healthier, Greener Planet.</h3>
+          <p style="color: var(--text-muted); margin-bottom: var(--spacing-lg); line-height: 1.7;">We care deeply about biodiversity, non-GMO food security, and creating micro-gardens in standard city dwellings. That is why all our products align with core earth-friendly values.</p>
+          <div style="display: flex; gap: var(--spacing-md);">
+            <div style="text-align: center; flex: 1; padding: var(--spacing-md); background: rgba(255,255,255,0.5); border-radius: var(--radius-md);">
+              <h4 style="font-size: 1.8rem; color: var(--primary-forest);">100%</h4>
+              <p style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted);">Non-GMO Seeds</p>
+            </div>
+            <div style="text-align: center; flex: 1; padding: var(--spacing-md); background: rgba(255,255,255,0.5); border-radius: var(--radius-md);">
+              <h4 style="font-size: 1.8rem; color: var(--primary-forest);">Free</h4>
+              <p style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted);">Support Helpline</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Values Grid Right -->
+        <div style="display: flex; flex-direction: column; gap: var(--spacing-lg);">
+          
+          <!-- Value 1 -->
+          <div style="display: flex; gap: var(--spacing-md); align-items: flex-start;">
+            <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background-color: var(--accent-wheat); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--primary-forest);">
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div>
+              <h4 style="font-size: 1.15rem; font-family: var(--font-sans); font-weight: 700; margin-bottom: 4px; color: var(--primary-forest);">Tested Germination Guarantee</h4>
+              <p style="color: var(--text-muted); font-size: 0.95rem;">Every single batch of our seeds undergoes high-standard germination and viability trials by our horticulturists before packaging.</p>
+            </div>
+          </div>
+
+          <!-- Value 2 -->
+          <div style="display: flex; gap: var(--spacing-md); align-items: flex-start;">
+            <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background-color: var(--accent-blush); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--primary-forest);">
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            </div>
+            <div>
+              <h4 style="font-size: 1.15rem; font-family: var(--font-sans); font-weight: 700; margin-bottom: 4px; color: var(--primary-forest);">Biodegradable Packaging</h4>
+              <p style="color: var(--text-muted); font-size: 0.95rem;">Our seeds packet and protective planter sleeves are engineered from 100% compostable elements that break down naturally in soil.</p>
+            </div>
+          </div>
+
+          <!-- Value 3 -->
+          <div style="display: flex; gap: var(--spacing-md); align-items: flex-start;">
+            <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background-color: var(--accent-sky); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--primary-forest);">
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+            </div>
+            <div>
+              <h4 style="font-size: 1.15rem; font-family: var(--font-sans); font-weight: 700; margin-bottom: 4px; color: var(--primary-forest);">Expert Cultivation Advice</h4>
+              <p style="color: var(--text-muted); font-size: 0.95rem;">Receive dedicated lifetime botanical assistance. If your plants are struggling, connect with us for step-by-step optimization guidance.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section style="padding: var(--spacing-xxl) 0; background-color: var(--bg-cream);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: var(--spacing-xxl); max-width: 600px; margin-right: auto; margin-left: auto;">
+        <h2 style="font-size: 2.2rem; margin-bottom: var(--spacing-md);">Shared Garden Joy</h2>
+        <p style="color: var(--text-muted);">See how our community of growers have transformed their balconies, backyards, and windowsills into lush natural havens.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg);">
+        
+        <!-- Review 1 -->
+        <div style="background-color: var(--bg-white); border-radius: var(--radius-md); padding: var(--spacing-lg); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; gap: var(--spacing-xs); margin-bottom: var(--spacing-md); color: #E9B862;">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; font-style: italic; margin-bottom: var(--spacing-lg); line-height: 1.7;">"I was skeptical about starting lavender from seeds, but the Organic Garden packets had near-perfect germination! My balcony smells like Southern France now. Truly outstanding seeds."</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--spacing-sm); border-top: 1px solid var(--border-light); padding-top: var(--spacing-sm);">
+            <div style="width: 38px; height: 38px; border-radius: var(--radius-round); background-color: var(--accent-wheat); font-weight: 700; display: flex; align-items: center; justify-content: center; color: var(--primary-forest); font-size: 0.9rem;">E</div>
+            <div>
+              <h4 style="font-size: 0.9rem; font-family: var(--font-sans); font-weight: 700; color: var(--primary-forest);">Eleanor V.</h4>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">Balcony Hobbyist</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div style="background-color: var(--bg-white); border-radius: var(--radius-md); padding: var(--spacing-lg); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; gap: var(--spacing-xs); margin-bottom: var(--spacing-md); color: #E9B862;">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; font-style: italic; margin-bottom: var(--spacing-lg); line-height: 1.7;">"The Calathea live plant arrived packaged securely in dynamic thermoregulated paper sleeves. Not a single leaf was damaged. It looks gorgeous in my home office! Highly recommend."</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--spacing-sm); border-top: 1px solid var(--border-light); padding-top: var(--spacing-sm);">
+            <div style="width: 38px; height: 38px; border-radius: var(--radius-round); background-color: var(--accent-blush); font-weight: 700; display: flex; align-items: center; justify-content: center; color: var(--primary-forest); font-size: 0.9rem;">M</div>
+            <div>
+              <h4 style="font-size: 0.9rem; font-family: var(--font-sans); font-weight: 700; color: var(--primary-forest);">Marcus T.</h4>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">Indoor Plant Fanatic</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div style="background-color: var(--bg-white); border-radius: var(--radius-md); padding: var(--spacing-lg); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; gap: var(--spacing-xs); margin-bottom: var(--spacing-md); color: #E9B862;">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; font-style: italic; margin-bottom: var(--spacing-lg); line-height: 1.7;">"I love the vintage look of the brass watering can. It pours cleanly without any drips, and it is pretty enough to serve as a bookshelf ornament when not in use. Perfect design!"</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--spacing-sm); border-top: 1px solid var(--border-light); padding-top: var(--spacing-sm);">
+            <div style="width: 38px; height: 38px; border-radius: var(--radius-round); background-color: var(--accent-sky); font-weight: 700; display: flex; align-items: center; justify-content: center; color: var(--primary-forest); font-size: 0.9rem;">S</div>
+            <div>
+              <h4 style="font-size: 0.9rem; font-family: var(--font-sans); font-weight: 700; color: var(--primary-forest);">Sophia K.</h4>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">Backyard Designer</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Brand Info Column -->
+        <div>
+          <a href="index.html" class="logo" style="color: var(--bg-cream);">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M12 2C8 6.5 4 9 4 13a8 8 0 0 0 16 0c0-4-4-6.5-8-11z"></path>
+            </svg>
+            <span style="color: var(--bg-white);">organic garden</span>
+          </a>
+          <p class="footer-brand__desc">Promoting urban biodiversity, sustainable home cultivation, and organic green lifestyles with meticulously tested botanical products.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"></path></svg>
+            </a>
+            <a href="#" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24"><path d="M8 22a9 9 0 0 1-5.36-1.64c-.1-.08-.12-.24-.04-.34.33-.42.92-1.28 1.25-1.92.5-.96.83-2.13.97-3.07a8.5 8.5 0 0 1-.82-3.6c0-3.3 2.1-5.93 5-5.93 1.34 0 2.6.53 3.55 1.48S14 9.16 14 10.5c0 2.22-1.2 3.8-3 3.8-1 0-1.85-.75-1.85-1.75a2.2 2.2 0 0 1 .53-1.4l1.1-2.58a.8.8 0 0 0-.78-1.07c-1.12 0-2 1.22-2 2.76 0 .8.2 1.45.54 1.9L7.22 17c-.3 1-.7 2.37-.93 3.23a8.9 8.9 0 0 0 1.7 1.77c.1.07.1.23 0 .3-.43.3-.92.6-1.4.8A7.8 7.8 0 0 1 8 22z"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4>Sitemap</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Seed &amp; Plant Catalog</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Help & Advice -->
+        <div>
+          <h4>Support &amp; Help</h4>
+          <ul class="footer-links">
+            <li><a href="about.html#values">Sustainability Mission</a></li>
+            <li><a href="contact.html#faq">Growing Guides (FAQ)</a></li>
+            <li><a href="contact.html">Lifetime Assistance</a></li>
+            <li><a href="#">Shipping &amp; Returns Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Sign-up -->
+        <div>
+          <h4>Cultivate Community</h4>
+          <p class="footer-newsletter__desc">Sign up for seasonal greenhouse news, plant care schedules, and 10% off your initial order.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your Email Address" required aria-label="Email address for newsletter">
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Organic Garden. All rights reserved. Created with love for organic agriculture.</p>
+        <p>Aesthetic Pastel Green Brand &bull; Professional Quality</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    // Bind Add to Cart buttons specifically for Home page items
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-id');
+        const name = btn.getAttribute('data-name');
+        const price = parseFloat(btn.getAttribute('data-price'));
+        const category = btn.getAttribute('data-category');
+        
+        // Grab the SVG content of the parent container to show in the cart
+        const svgContainer = btn.closest('article').querySelector('.product-card__image-container').innerHTML;
+        
+        window.CartStore.add({
+          id: id,
+          name: name,
+          price: price,
+          category: category,
+          imageSvg: svgContainer,
+          quantity: 1
+        });
+        
+        window.showNotificationModal('Seed Added!', `<strong>${name}</strong> has been added to your shopping cart. Click the cart icon in the top right to complete your order!`);
+      });
+    });
+  </script>
+</body>
+</html>
