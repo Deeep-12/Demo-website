@@ -2,6 +2,7 @@
   "name": "demo-website",
   "version": "1.0.0",
   "description": "Organic Garden Demo Website",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
