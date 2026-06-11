@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organic Garden | About Our Story &amp; Sustainable Roots</title>
+  <meta name="description" content="Learn about the values and history of Organic Garden. Meet our expert horticulturists and discover our focus on non-GMO organic seeds, sustainable sourcing, and lifetime grower advice.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* About Specific Styles */
+    .about-hero {
+      background: linear-gradient(135deg, #F6EFE2 0%, var(--primary-pastel) 100%);
+      padding: 120px 0 var(--spacing-xxl);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: var(--spacing-xxl) auto;
+      padding: 0 var(--spacing-lg);
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background-color: var(--primary-sage);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      margin-bottom: var(--spacing-xxl);
+      position: relative;
+      width: 50%;
+      padding-right: var(--spacing-xl);
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      padding-right: 0;
+      padding-left: var(--spacing-xl);
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      top: 6px;
+      right: -8px;
+      width: 16px;
+      height: 16px;
+      border-radius: var(--radius-round);
+      background-color: var(--primary-forest);
+      border: 4px solid var(--primary-pastel);
+      z-index: 1;
+    }
+
+    .timeline-item:nth-child(even)::after {
+      left: -8px;
+      right: auto;
+    }
+
+    .timeline-box {
+      background-color: var(--bg-white);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .timeline-year {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary-forest);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-xl);
+      margin-top: var(--spacing-xxl);
+    }
+
+    .team-card {
+      background-color: var(--bg-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: var(--transition-normal);
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .team-card__avatar {
+      height: 240px;
+      background-color: var(--primary-pastel);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-lg);
+      position: relative;
+    }
+
+    .team-card__avatar svg {
+      width: 60%;
+      height: 60%;
+      stroke: var(--primary-forest);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .team-card__info {
+      padding: var(--spacing-lg);
+    }
+
+    .team-card__role {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--primary-sage);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 20px;
+      }
+      .timeline-item {
+        width: 100%;
+        padding-left: var(--spacing-xl) !important;
+        padding-right: 0 !important;
+        left: 0 !important;
+      }
+      .timeline-item::after {
+        left: 12px !important;
+        right: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container header__nav">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" width="32" height="32">
+          <path d="M12 2C8 6.5 4 9 4 13a8 8 0 0 0 16 0c0-4-4-6.5-8-11z" fill="rgba(136, 178, 153, 0.4)"></path>
+          <path d="M12 22C6.48 22 2 17.52 2 12c0-3.1 1.7-6.07 4.45-8A1 1 0 0 1 7.7 5.5l-3.3 2.4C3.5 8.7 3 10.3 3 12c0 4.96 4.04 9 9 9s9-4.04 9-9c0-1.7-.5-3.3-1.4-4.1l-3.3-2.4a1 1 0 0 1 1.25-1.56C20.3 6 22 8.9 22 12c0 5.52-4.48 10-10 10z" fill="currentColor"></path>
+          <path d="M12 18v-8M9 13l3-3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>organic garden</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" id="link-home">Home</a></li>
+          <li><a href="products.html" id="link-products">Products</a></li>
+          <li><a href="about.html" id="link-about" class="active">About Us</a></li>
+          <li><a href="contact.html" id="link-contact">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a href="cart.html" class="cart-btn" id="cart-btn" aria-label="Shopping Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge">0</span>
+        </a>
+        <div class="menu-toggle" id="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Hero Section -->
+  <section class="about-hero animate-fade-in-up">
+    <div class="container" style="text-align: center;">
+      <span class="hero-tagline" style="margin-bottom: var(--spacing-md);">
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span>Cultivating Conscious Growth</span>
+      </span>
+      <h1 style="font-size: clamp(2.5rem, 5vw, 3.8rem); margin-bottom: var(--spacing-md); font-family: var(--font-serif);">Our Story &amp; Sustainable Roots</h1>
+      <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto; font-size: 1.1rem; line-height: 1.7;">Organic Garden was founded on a simple realization: that modern urban lifestyles thrive when reconnected with the biological rhythms of growing plants.</p>
+    </div>
+  </section>
+
+  <!-- Story Layout Section -->
+  <section style="padding: var(--spacing-xxl) 0; background-color: var(--bg-white);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: var(--spacing-xl); align-items: center;">
+        
+        <!-- Beautiful Plant Illustration Left -->
+        <div style="background-color: var(--accent-blush); border-radius: var(--radius-lg); padding: var(--spacing-xl); display: flex; justify-content: center; align-items: center; border: 1px solid var(--border-light);">
+          <svg viewBox="0 0 200 200" width="100%" height="auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="170" rx="60" ry="12" fill="#EAE2D5" />
+            <path d="M75 160 L125 160 L130 115 L70 115 Z" fill="#D4DFD8" stroke="#1F3F30" stroke-width="2" />
+            <line x1="100" y1="115" x2="100" y2="40" stroke="#1F3F30" stroke-width="2.5" stroke-linecap="round" />
+            
+            <path d="M100 80 Q70 60 75 45 C 80 30, 95 50, 100 70" fill="#BAD9C7" stroke="#1F3F30" stroke-width="1.5" />
+            <path d="M100 100 Q130 80 125 65 C 120 50, 105 70, 100 90" fill="#BAD9C7" stroke="#1F3F30" stroke-width="1.5" />
+            
+            <circle cx="100" cy="40" r="14" fill="#F6EFE2" stroke="#1F3F30" stroke-width="2" />
+            <circle cx="100" cy="40" r="4" fill="#E9B862" />
+          </svg>
+        </div>
+
+        <!-- Narrative Content Right -->
+        <div>
+          <h2 style="font-size: 2.2rem; margin-bottom: var(--spacing-md);">The Seed of an Idea</h2>
+          <p style="color: var(--text-muted); margin-bottom: var(--spacing-md); line-height: 1.8;">Established in 2018 in a tiny sunlit greenhouse, Organic Garden grew out of a passion for high-germination heirloom crop seed banking. Over years of collaborating with traditional farmers, we cataloged organic non-hybridized flowers and crop strains that thrive in standard container settings, backyards, and windowsills.</p>
+          <p style="color: var(--text-muted); margin-bottom: var(--spacing-lg); line-height: 1.8;">Today, we ship to over 50,000 gardeners annually, providing certified non-GMO seeds, acclimated live house plants, and zero-plastic botanical essentials. We are not just a supply company; we are your full-cycle partner in cultivation.</p>
+          <a href="products.html" class="btn btn--primary">Browse Our Catalog</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Timeline -->
+  <section style="padding: var(--spacing-xxl) 0; background-color: var(--bg-cream);">
+    <div class="container">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto var(--spacing-xxl);">
+        <h2 style="font-size: 2.2rem; margin-bottom: var(--spacing-sm);">How We Grew</h2>
+        <p style="color: var(--text-muted);">A timeline of sustainable milestones and green milestones.</p>
+      </div>
+
+      <div class="timeline">
+        <!-- 2018 -->
+        <div class="timeline-item">
+          <div class="timeline-box">
+            <div class="timeline-year">2018</div>
+            <h4 style="font-family: var(--font-sans); font-weight: 700; margin-bottom: 4px; color: var(--primary-forest);">The Sprout</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Founded in a backyard potting shed with only 12 heirloom tomato and flower seed selections.</p>
+          </div>
+        </div>
+        <!-- 2020 -->
+        <div class="timeline-item">
+          <div class="timeline-box">
+            <div class="timeline-year">2020</div>
+            <h4 style="font-family: var(--font-sans); font-weight: 700; margin-bottom: 4px; color: var(--primary-forest);">Compostable Packaging</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Phased out standard plastic poly-bags. Launched our trademark 100% biodegradable cornstarch paper seeds packets.</p>
+          </div>
+        </div>
+        <!-- 2023 -->
+        <div class="timeline-item">
+          <div class="timeline-box">
+            <div class="timeline-year">2023</div>
+            <h4 style="font-family: var(--font-sans); font-weight: 700; margin-bottom: 4px; color: var(--primary-forest);">Live Plants Nursery</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Opened our first state-of-the-art solar-heated indoor nursery, delivering vibrant potted botanicals directly to homes.</p>
+          </div>
+        </div>
+        <!-- 2026 -->
+        <div class="timeline-item">
+          <div class="timeline-box">
+            <div class="timeline-year">2026</div>
+            <h4 style="font-family: var(--font-sans); font-weight: 700; margin-bottom: 4px; color: var(--primary-forest);">Community Gardens Initiative</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Pledged 2% of all order profits to urban greening programs and public elementary school seedling workshops.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet the Team -->
+  <section style="padding: var(--spacing-xxl) 0; background-color: var(--bg-white);">
+    <div class="container">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto var(--spacing-xxl);">
+        <h2 style="font-size: 2.2rem; margin-bottom: var(--spacing-sm);">Our Botanical Stewards</h2>
+        <p style="color: var(--text-muted);">Get to know the certified horticulturists and garden designers behind our products catalog.</p>
+      </div>
+
+      <div class="team-grid">
+        <!-- Steward 1 -->
+        <article class="team-card">
+          <div class="team-card__avatar" style="background-color: var(--accent-blush);">
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="40" r="16" stroke-width="2"></circle>
+              <path d="M22 85 C 22 65, 35 58, 50 58 C 65 58, 78 65, 78 85 Z" stroke-width="2"></path>
+              <circle cx="70" cy="25" r="4" fill="#E9B862" stroke="none"></circle>
+            </svg>
+          </div>
+          <div class="team-card__info">
+            <div class="team-card__role">Flower Specialist</div>
+            <h3 style="font-size: 1.3rem; margin-bottom: var(--spacing-xs); font-family: var(--font-sans); font-weight: 700;">Evelyn Rose</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Evelyn is a certified master botanist with over 12 years of wild meadow seed collection and hybridization experience.</p>
+          </div>
+        </article>
+
+        <!-- Steward 2 -->
+        <article class="team-card">
+          <div class="team-card__avatar" style="background-color: var(--accent-wheat);">
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="40" r="16" stroke-width="2"></circle>
+              <path d="M22 85 C 22 65, 35 58, 50 58 C 65 58, 78 65, 78 85 Z" stroke-width="2"></path>
+              <path d="M40 20 C42 16, 48 16, 50 20" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+          </div>
+          <div class="team-card__info">
+            <div class="team-card__role">Crop Cultivator</div>
+            <h3 style="font-size: 1.3rem; margin-bottom: var(--spacing-xs); font-family: var(--font-sans); font-weight: 700;">David Sprout</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">David ensures high seed germination standards, executing weekly quality control batch trials on our organic veggie strains.</p>
+          </div>
+        </article>
+
+        <!-- Steward 3 -->
+        <article class="team-card">
+          <div class="team-card__avatar" style="background-color: var(--primary-pastel);">
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="40" r="16" stroke-width="2"></circle>
+              <path d="M22 85 C 22 65, 35 58, 50 58 C 65 58, 78 65, 78 85 Z" stroke-width="2"></path>
+              <path d="M44 48 L 56 48" stroke-width="1.5"></path>
+            </svg>
+          </div>
+          <div class="team-card__info">
+            <div class="team-card__role">Plant Designer</div>
+            <h3 style="font-size: 1.3rem; margin-bottom: var(--spacing-xs); font-family: var(--font-sans); font-weight: 700;">Clara Vine</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Clara specializes in acclimating house plants to low-light indoor climates, ensuring they thrive upon home delivery.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo" style="color: var(--bg-cream);">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M12 2C8 6.5 4 9 4 13a8 8 0 0 0 16 0c0-4-4-6.5-8-11z"></path>
+            </svg>
+            <span style="color: var(--bg-white);">organic garden</span>
+          </a>
+          <p class="footer-brand__desc">Promoting urban biodiversity, sustainable home cultivation, and organic green lifestyles with meticulously tested botanical products.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"></path></svg>
+            </a>
+            <a href="#" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24"><path d="M8 22a9 9 0 0 1-5.36-1.64c-.1-.08-.12-.24-.04-.34.33-.42.92-1.28 1.25-1.92.5-.96.83-2.13.97-3.07a8.5 8.5 0 0 1-.82-3.6c0-3.3 2.1-5.93 5-5.93 1.34 0 2.6.53 3.55 1.48S14 9.16 14 10.5c0 2.22-1.2 3.8-3 3.8-1 0-1.85-.75-1.85-1.75a2.2 2.2 0 0 1 .53-1.4l1.1-2.58a.8.8 0 0 0-.78-1.07c-1.12 0-2 1.22-2 2.76 0 .8.2 1.45.54 1.9L7.22 17c-.3 1-.7 2.37-.93 3.23a8.9 8.9 0 0 0 1.7 1.77c.1.07.1.23 0 .3-.43.3-.92.6-1.4.8A7.8 7.8 0 0 1 8 22z"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Sitemap</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Seed &amp; Plant Catalog</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Support &amp; Help</h4>
+          <ul class="footer-links">
+            <li><a href="about.html#values">Sustainability Mission</a></li>
+            <li><a href="contact.html#faq">Growing Guides (FAQ)</a></li>
+            <li><a href="contact.html">Lifetime Assistance</a></li>
+            <li><a href="#">Shipping &amp; Returns Policy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Cultivate Community</h4>
+          <p class="footer-newsletter__desc">Sign up for seasonal greenhouse news, plant care schedules, and 10% off your initial order.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your Email Address" required aria-label="Email address for newsletter">
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Organic Garden. All rights reserved. Created with love for organic agriculture.</p>
+        <p>Aesthetic Pastel Green Brand &bull; Professional Quality</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
