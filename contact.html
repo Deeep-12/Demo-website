@@ -513,12 +513,8 @@
       }
 
       if (isValid) {
-        // Success Modal Popup!
-        window.showNotificationModal(
-          'Inquiry Received!',
-          `Thank you for contacting us, <strong>${nameInput.value.trim()}</strong>. Your garden support ticket has been registered. One of our master horticulturists will review your message regarding <strong>${document.getElementById('form-subject').selectedOptions[0].text}</strong> and respond within 24 hours.`
-        );
-        contactForm.reset();
+        // Redirect to thank you page
+        window.location.href = 'thankyou.html?type=contact';
       }
     });
 

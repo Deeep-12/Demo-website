@@ -231,9 +231,9 @@
       </section>
 
       <!-- Action Panel Buttons -->
-      <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
-        <a href="products.html" class="btn btn--primary">Continue Seed Sowing</a>
-        <button class="btn btn--secondary" onclick="window.print()">Print Invoice Receipt</button>
+      <div id="thankyou-actions" style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+        <a href="products.html" class="btn btn--primary" id="thankyou-primary-btn">Continue Seed Sowing</a>
+        <button class="btn btn--secondary" onclick="window.print()" id="thankyou-secondary-btn">Print Invoice Receipt</button>
       </div>
 
     </div>
@@ -305,8 +305,32 @@
   <!-- Scripts -->
   <script src="script.js"></script>
   <script>
-    // Dynamically retrieve checkout metrics from sessionStorage
     document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const isContact = urlParams.get('type') === 'contact';
+
+      if (isContact) {
+        // Change title and text
+        document.querySelector('.thankyou-card h1').textContent = "Inquiry Sown!";
+        document.querySelector('.thankyou-card p').textContent = "Thank you for reaching out to Organic Garden. Your message has been received by our stewards. We will review it and reply within 24 working hours.";
+        
+        // Hide receipt box
+        document.getElementById('receipt-box').style.display = 'none';
+        
+        // Update CTA buttons
+        const primaryBtn = document.getElementById('thankyou-primary-btn');
+        if (primaryBtn) {
+          primaryBtn.textContent = "Back to Homepage";
+          primaryBtn.setAttribute('href', 'index.html');
+        }
+        const secondaryBtn = document.getElementById('thankyou-secondary-btn');
+        if (secondaryBtn) {
+          secondaryBtn.textContent = "Explore Botanicals";
+          secondaryBtn.outerHTML = `<a href="products.html" class="btn btn--secondary" id="thankyou-secondary-btn">Explore Botanicals</a>`;
+        }
+        return;
+      }
+
       // 1. Generate Order ID
       const randomOrder = 'ORG-' + Math.floor(1000 + Math.random() * 9000) + '-' + Math.floor(1000 + Math.random() * 9000);
       document.getElementById('receipt-order-no').textContent = `Order: ${randomOrder}`;
