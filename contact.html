@@ -513,8 +513,27 @@
       }
 
       if (isValid) {
-        // Redirect to thank you page
-        window.location.href = 'thankyou.html?type=contact';
+        // Show inline thank you message replacing the form content
+        const cardBox = contactForm.closest('.contact-card-box');
+        if (cardBox) {
+          cardBox.style.opacity = '0';
+          setTimeout(() => {
+            cardBox.innerHTML = `
+              <div style="text-align: center; padding: var(--spacing-lg) 0;">
+                <div style="width: 64px; height: 64px; border-radius: var(--radius-round); background-color: var(--primary-pastel); color: var(--success); display: inline-flex; align-items: center; justify-content: center; margin-bottom: var(--spacing-md); border: 2px solid var(--border-light);">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22,4 12,14.01 9,11.01"></polyline></svg>
+                </div>
+                <h2 style="font-size: 2rem; margin-bottom: var(--spacing-sm); font-family: var(--font-serif); color: var(--primary-forest);">Inquiry Sown!</h2>
+                <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: var(--spacing-lg); max-width: 400px; margin-left: auto; margin-right: auto;">
+                  Thank you for reaching out, <strong>${nameInput.value.trim()}</strong>. Your message has been received by our stewards. We will review your inquiry regarding <strong>${document.getElementById('form-subject').selectedOptions[0].text}</strong> and respond within 24 working hours.
+                </p>
+                <a href="index.html" class="btn btn--primary" style="padding: 0.75rem var(--spacing-lg); font-size: 0.9rem;">Back to Homepage</a>
+              </div>
+            `;
+            cardBox.style.transition = 'opacity 0.4s ease';
+            cardBox.style.opacity = '1';
+          }, 300);
+        }
       }
     });
 
