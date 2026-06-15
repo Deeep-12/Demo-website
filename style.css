@@ -189,6 +189,34 @@ button, input, select, textarea {
   font-weight: 700;
 }
 
+.nav-links .btn-cheatsheet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: 0.45rem 1rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--bg-cream);
+  background-color: var(--primary-forest);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: -3px;
+}
+
+.nav-links .btn-cheatsheet:hover {
+  background-color: var(--primary-sage);
+  color: var(--primary-forest);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-links .btn-cheatsheet::after {
+  display: none !important;
+}
+
 .header__actions {
   display: flex;
   align-items: center;
@@ -878,6 +906,13 @@ button, input, select, textarea {
   
   .menu-toggle.active span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-links .btn-cheatsheet {
+    font-size: 0.95rem;
+    padding: 0.75rem var(--spacing-xl);
+    border-radius: var(--radius-md);
+    margin-top: var(--spacing-md);
   }
 
   .footer-grid {
