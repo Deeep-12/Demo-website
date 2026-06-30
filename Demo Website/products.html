@@ -610,6 +610,9 @@
           </div>
         `;
 
+        // Set card cursor to pointer
+        card.style.cursor = 'pointer';
+
         // Bind quick add to cart handler
         card.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
           e.stopPropagation();
@@ -622,6 +625,19 @@
             quantity: 1
           });
           window.showNotificationModal('Sprout Added!', `<strong>${item.name}</strong> was successfully added to your shopping cart.`);
+        });
+
+        // Bind card click to open details modal
+        card.addEventListener('click', () => {
+          window.showProductDetailModal({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            category: item.category,
+            imageSvg: item.imageSvg,
+            rating: item.rating,
+            reviews: item.reviews
+          });
         });
 
         productsGrid.appendChild(card);

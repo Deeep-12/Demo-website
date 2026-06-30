@@ -510,6 +510,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         window.showNotificationModal('Seed Added!', `<strong>${name}</strong> has been added to your shopping cart. Click the cart icon in the top right to complete your order!`);
       });
     });
+
+    // Bind card click to open product detail modal
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        const btn = card.querySelector('.add-to-cart-btn');
+        if (!btn) return;
+        const id = btn.getAttribute('data-id');
+        const name = btn.getAttribute('data-name');
+        const price = parseFloat(btn.getAttribute('data-price'));
+        const category = btn.getAttribute('data-category');
+        const svgContainer = card.querySelector('.product-card__image-container').innerHTML;
+        
+        let rating = 4.8;
+        let reviews = 80;
+        const ratingTextEl = card.querySelector('.product-card__rating span');
+        if (ratingTextEl) {
+          const match = ratingTextEl.textContent.match(/([\d.]+)\s*\((\d+)/);
+          if (match) {
+            rating = parseFloat(match[1]);
+            reviews = parseInt(match[2]);
+          }
+        }
+
+        window.showProductDetailModal({
+          id: id,
+          name: name,
+          price: price,
+          category: category,
+          imageSvg: svgContainer,
+          rating: rating,
+          reviews: reviews
+        });
+      });
+    });
   </script>
 </body>
 </html>

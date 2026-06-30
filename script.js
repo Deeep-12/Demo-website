@@ -93,10 +93,11 @@ const CartStore = {
 
   add(product) {
     const cart = this.get();
+    const qtyAdded = product.quantity || 1;
     const existing = cart.find(item => item.id === product.id);
     
     if (existing) {
-      existing.quantity += (product.quantity || 1);
+      existing.quantity += qtyAdded;
     } else {
       cart.push({
         id: product.id,
@@ -104,12 +105,29 @@ const CartStore = {
         price: product.price,
         category: product.category,
         imageSvg: product.imageSvg || '',
-        quantity: product.quantity || 1
+        quantity: qtyAdded
       });
     }
     
     this.set(cart);
     this.animateBadge();
+
+    // Trigger add_to_cart tracking event
+    if (window.trackEcommerceEvent) {
+      window.trackEcommerceEvent('add_to_cart', {
+        currency: 'INR',
+        value: product.price * qtyAdded,
+        items: [
+          {
+            item_id: product.id,
+            item_name: product.name,
+            price: product.price,
+            item_category: product.category,
+            quantity: qtyAdded
+          }
+        ]
+      });
+    }
   },
 
   remove(productId) {
@@ -242,3 +260,116 @@ function showNotificationModal(title, bodyHtml) {
 // Export modules to window scope for page specific scripts
 window.CartStore = CartStore;
 window.showNotificationModal = showNotificationModal;
+window.showProductDetailModal = showProductDetailModal;
+
+/* ==========================================================================
+   6. PRODUCT DETAIL MODAL BUILDER
+   ========================================================================== */
+function showProductDetailModal(product) {
+  // Remove existing dynamic modal if any
+  const existing = document.getElementById('dynamic-product-modal');
+  if (existing) existing.remove();
+
+  // Trigger view_item event!
+  if (window.trackEcommerceEvent) {
+    window.trackEcommerceEvent('view_item', {
+      currency: 'INR',
+      value: product.price,
+      items: [
+        {
+          item_id: product.id,
+          item_name: product.name,
+          price: product.price,
+          item_category: product.category,
+          quantity: 1
+        }
+      ]
+    });
+  }
+
+  const modalHtml = `
+    <div id="dynamic-product-modal" class="modal">
+      <div class="modal-overlay"></div>
+      <div class="modal-content product-detail-modal" style="max-width: 550px; padding: var(--spacing-xl); text-align: left; position: relative;">
+        <button class="close-modal-x" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--text-muted); line-height: 1;">&times;</button>
+        <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+          <div style="background-color: var(--bg-cream); border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: center; justify-content: center; height: 220px; border: 1px solid var(--border-light); padding: var(--spacing-md);">
+            ${product.imageSvg || `
+              <svg viewBox="0 0 100 100" style="width: 80px; height: 80px;" fill="none" stroke="var(--primary-forest)" stroke-width="2">
+                <circle cx="50" cy="50" r="40"></circle>
+              </svg>
+            `}
+          </div>
+          <div>
+            <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; font-weight: 700;">
+              ${product.category}
+            </span>
+            <h3 class="font-serif" style="font-size: 1.8rem; margin: 4px 0 var(--spacing-xs); color: var(--primary-forest);">${product.name}</h3>
+            
+            <div style="display: flex; align-items: center; gap: 4px; margin-bottom: var(--spacing-md);">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="#E9B862" style="margin-top:-2px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <span style="font-size: 0.9rem; font-weight: 700; color: var(--text-dark);">${product.rating || '4.8'}</span>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">(${product.reviews || '80'} reviews)</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: var(--spacing-lg);">
+              Bring natural vibrancy and sustainable ecology to your home. Meticulously tested for viability and quality. Easy to care for and perfect for green living enthusiasts.
+            </p>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-light); padding-top: var(--spacing-md);">
+              <span style="font-size: 1.5rem; font-weight: 800; color: var(--primary-forest);">₹${product.price.toFixed(2)}</span>
+              <button class="btn btn--primary modal-add-btn" style="padding: 0.8rem var(--spacing-xl);">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+  
+  const modal = document.getElementById('dynamic-product-modal');
+  const closeX = modal.querySelector('.close-modal-x');
+  const overlay = modal.querySelector('.modal-overlay');
+  const addBtn = modal.querySelector('.modal-add-btn');
+
+  const closeModal = () => {
+    modal.classList.remove('show');
+    setTimeout(() => modal.remove(), 300);
+  };
+
+  closeX.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+  addBtn.addEventListener('click', () => {
+    window.CartStore.add(product);
+    closeModal();
+    window.showNotificationModal('Sprout Added!', `<strong>${product.name}</strong> was successfully added to your shopping cart.`);
+  });
+
+  // Trigger reflow to animate
+  void modal.offsetWidth;
+  modal.classList.add('show');
+}
+
+/* ==========================================================================
+   7. GA4 & GTM ECOMMERCE EVENT TRACKING HELPERS
+   ========================================================================== */
+window.trackEcommerceEvent = function(eventName, ecommerceData) {
+  window.dataLayer = window.dataLayer || [];
+  
+  // Clear the previous ecommerce object to prevent parameter leakage
+  window.dataLayer.push({ ecommerce: null });
+  
+  // Create payload with both root and ecommerce properties
+  const payload = {
+    event: eventName,
+    currency: ecommerceData.currency,
+    value: ecommerceData.value,
+    items: ecommerceData.items,
+    ...ecommerceData,
+    ecommerce: ecommerceData
+  };
+  
+  console.log(`[GA4/GTM Tracking] Pushing event "${eventName}":`, payload);
+  window.dataLayer.push(payload);
+};

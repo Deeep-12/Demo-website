@@ -515,6 +515,7 @@
     // Cart Render & Secure checkout Form Controller
     let hasAppliedPromo = false;
     let promoDiscountPct = 0;
+    let hasTrackedBeginCheckout = false;
 
     const cartItemsList = document.getElementById('cart-items-list');
     const summarySubtotal = document.getElementById('summary-subtotal');
@@ -666,6 +667,22 @@
           </div>
         `;
         return;
+      }
+
+      // Trigger begin_checkout GA4/GTM event if not already done
+      if (!hasTrackedBeginCheckout && window.trackEcommerceEvent) {
+        hasTrackedBeginCheckout = true;
+        window.trackEcommerceEvent('begin_checkout', {
+          currency: 'INR',
+          value: window.CartStore.subtotal(),
+          items: cart.map(item => ({
+            item_id: item.id,
+            item_name: item.name,
+            price: item.price,
+            item_category: item.category,
+            quantity: item.quantity
+          }))
+        });
       }
 
       // Populate item rows

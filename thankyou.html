@@ -380,6 +380,45 @@
           </div>
         `;
       }
+
+      // 4. GA4 / GTM Purchase Event tracking
+      if (window.trackEcommerceEvent) {
+        const trackedOrders = JSON.parse(sessionStorage.getItem('tracked_orders') || '[]');
+        if (!trackedOrders.includes(randomOrder)) {
+          let value = 432.76;
+          let items = [
+            {
+              item_id: "p1",
+              item_name: "French Lavender Seeds",
+              price: 149.00,
+              item_category: "Seeds",
+              quantity: 2
+            }
+          ];
+
+          if (receiptData) {
+            value = receiptData.total;
+            items = receiptData.items.map(item => ({
+              item_id: item.id,
+              item_name: item.name,
+              price: item.price,
+              item_category: item.category,
+              quantity: item.quantity
+            }));
+          }
+
+          window.trackEcommerceEvent('purchase', {
+            transaction_id: randomOrder,
+            "transaction ID": randomOrder,
+            value: parseFloat(value.toFixed(2)),
+            currency: 'INR',
+            items: items
+          });
+          
+          trackedOrders.push(randomOrder);
+          sessionStorage.setItem('tracked_orders', JSON.stringify(trackedOrders));
+        }
+      }
     });
   </script>
 </body>
