@@ -360,12 +360,21 @@ window.trackEcommerceEvent = function(eventName, ecommerceData) {
   // Clear the previous ecommerce object to prevent parameter leakage
   window.dataLayer.push({ ecommerce: null });
   
+  // Compute comma-separated list of item names
+  let itemNames = '';
+  if (ecommerceData.items && ecommerceData.items.length) {
+    itemNames = ecommerceData.items.map(function(item) {
+      return item.item_name || item.name;
+    }).join(', ');
+  }
+  
   // Create payload with both root and ecommerce properties
   const payload = {
     event: eventName,
     currency: ecommerceData.currency,
     value: ecommerceData.value,
     items: ecommerceData.items,
+    item_names: itemNames,
     ...ecommerceData,
     ecommerce: ecommerceData
   };
