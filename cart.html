@@ -424,34 +424,8 @@
         </div>
         <div id="promo-status-msg" style="font-size: 0.8rem; font-weight: 600; margin-top: -8px; margin-bottom: var(--spacing-md); display: none;"></div>
 
-        <!-- Billing checkout Form -->
-        <form class="checkout-form" id="checkout-form" novalidate>
-          <h3>Billing &amp; Delivery</h3>
-          
-          <!-- Recipient Name -->
-          <div class="form-group">
-            <label for="checkout-name" class="form-label">Full Name</label>
-            <input type="text" id="checkout-name" class="form-input" placeholder="Sumit Seal" required>
-            <div class="form-error-msg" id="chk-error-name" style="display: none;">Please provide recipient's full name.</div>
-          </div>
-
-          <!-- Shipping Address -->
-          <div class="form-group">
-            <label for="checkout-address" class="form-label">Shipping Address</label>
-            <input type="text" id="checkout-address" class="form-input" placeholder="45 Greenhouse Way, Sage Fields, Bengaluru, Karnataka, 560001" required>
-            <div class="form-error-msg" id="chk-error-address" style="display: none;">Please provide your shipping destination.</div>
-          </div>
-
-          <!-- Secure Payment card (Format simulator) -->
-          <div class="form-group">
-            <label for="checkout-card" class="form-label">Card Payment Details</label>
-            <input type="text" id="checkout-card" class="form-input" placeholder="4111 2222 3333 4444" maxlength="19" required>
-            <div class="form-error-msg" id="chk-error-card" style="display: none;">Please provide a valid 16-digit card number.</div>
-          </div>
-
-          <!-- Checkout Confirmed Button -->
-          <button type="submit" class="btn btn--primary" style="width: 100%; margin-top: var(--spacing-sm);" id="confirm-order-btn">Confirm Order &amp; Dispatch</button>
-        </form>
+        <!-- Proceed to Checkout Button -->
+        <a href="checkout.html" class="btn btn--primary" style="display: block; text-align: center; width: 100%; margin-top: var(--spacing-md); text-decoration: none;" id="proceed-checkout-btn">Proceed to Secure Checkout</a>
 
       </aside>
     </div>
@@ -526,7 +500,6 @@
     // Cart Render & Secure checkout Form Controller
     let hasAppliedPromo = false;
     let promoDiscountPct = 0;
-    let hasTrackedBeginCheckout = false;
 
     const cartItemsList = document.getElementById('cart-items-list');
     const summarySubtotal = document.getElementById('summary-subtotal');
@@ -543,18 +516,20 @@
     const promoApplyBtn = document.getElementById('promo-apply-btn');
     const promoStatus = document.getElementById('promo-status-msg');
 
-    const chkForm = document.getElementById('checkout-form');
-    const chkName = document.getElementById('checkout-name');
-    const chkAddress = document.getElementById('checkout-address');
-    const chkCard = document.getElementById('checkout-card');
-
     document.addEventListener('DOMContentLoaded', () => {
+      const savedDiscount = sessionStorage.getItem('organic_garden_discount_pct');
+      if (savedDiscount) {
+        hasAppliedPromo = true;
+        promoDiscountPct = parseFloat(savedDiscount);
+        promoInput.value = 'ORGANIC10';
+        promoStatus.style.display = 'block';
+        promoStatus.style.color = 'var(--success)';
+        promoStatus.textContent = 'Promo code "ORGANIC10" restored successfully!';
+      }
       renderCartView();
 
       // Listen to central store updates to re-render in real time
       window.addEventListener('cartUpdated', renderCartView);
-
-      setupCartHandlers();
     });
 
     // Promo applying action
@@ -565,6 +540,7 @@
       if (code === 'ORGANIC10') {
         hasAppliedPromo = true;
         promoDiscountPct = 0.10;
+        sessionStorage.setItem('organic_garden_discount_pct', '0.10');
         promoStatus.style.color = 'var(--success)';
         promoStatus.textContent = 'Promo code "ORGANIC10" applied successfully!';
         renderCartView();
@@ -574,93 +550,7 @@
       }
     });
 
-    // Format credit card with spaces dynamically
-    chkCard.addEventListener('input', (e) => {
-      let val = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-      let formatted = '';
-      for (let i = 0; i < val.length; i++) {
-        if (i > 0 && i % 4 === 0) formatted += ' ';
-        formatted += val[i];
-      }
-      e.target.value = formatted;
-    });
 
-    // Main checkout submit form logic
-    chkForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let isValid = true;
-
-      // Validate Name
-      if (chkName.value.trim().length < 2) {
-        chkName.classList.add('error');
-        document.getElementById('chk-error-name').style.display = 'block';
-        isValid = false;
-      } else {
-        chkName.classList.remove('error');
-        document.getElementById('chk-error-name').style.display = 'none';
-      }
-
-      // Validate Address
-      if (chkAddress.value.trim().length < 8) {
-        chkAddress.classList.add('error');
-        document.getElementById('chk-error-address').style.display = 'block';
-        isValid = false;
-      } else {
-        chkAddress.classList.remove('error');
-        document.getElementById('chk-error-address').style.display = 'none';
-      }
-
-      // Validate Card (must be 16 digits, 19 chars formatting)
-      if (chkCard.value.replace(/\s+/g, '').length !== 16) {
-        chkCard.classList.add('error');
-        document.getElementById('chk-error-card').style.display = 'block';
-        isValid = false;
-      } else {
-        chkCard.classList.remove('error');
-        document.getElementById('chk-error-card').style.display = 'none';
-      }
-
-      // Check if Cart is Empty
-      const cart = window.CartStore.get();
-      if (cart.length === 0) {
-        window.showNotificationModal('Cart is Empty!', 'Please add seeds or plants to your cart before checking out.');
-        isValid = false;
-      }
-
-      if (isValid) {
-        // Collect order metrics for Receipt page parsing
-        const finalTotals = {
-          name: chkName.value.trim(),
-          address: chkAddress.value.trim(),
-          subtotal: window.CartStore.subtotal(),
-          discount: window.CartStore.subtotal() * promoDiscountPct,
-          shipping: window.CartStore.subtotal() >= 999 || window.CartStore.subtotal() === 0 ? 0 : 99,
-          tax: (window.CartStore.subtotal() - (window.CartStore.subtotal() * promoDiscountPct)) * 0.12,
-          total: (window.CartStore.subtotal() - (window.CartStore.subtotal() * promoDiscountPct) + (window.CartStore.subtotal() >= 999 || window.CartStore.subtotal() === 0 ? 0 : 99)) * 1.12,
-          items: cart
-        };
-
-        // Cache final receipt into session storage
-        sessionStorage.setItem('organic_garden_receipt', JSON.stringify(finalTotals));
-        
-        // Clear global cart state
-        window.CartStore.clear();
-        
-        // Forward securely to receipts
-        window.location.href = 'thankyou.html';
-      }
-    });
-
-    function setupCartHandlers() {
-      // Clear error states on user input
-      [chkName, chkAddress, chkCard].forEach(input => {
-        input.addEventListener('input', () => {
-          input.classList.remove('error');
-          const errId = `chk-error-${input.id.split('-').pop()}`;
-          document.getElementById(errId).style.display = 'none';
-        });
-      });
-    }
 
     // High performance cart template rendering
     function renderCartView() {
@@ -680,21 +570,7 @@
         return;
       }
 
-      // Trigger begin_checkout GA4/GTM event if not already done
-      if (!hasTrackedBeginCheckout && window.trackEcommerceEvent) {
-        hasTrackedBeginCheckout = true;
-        window.trackEcommerceEvent('begin_checkout', {
-          currency: 'INR',
-          value: window.CartStore.subtotal(),
-          items: cart.map(item => ({
-            item_id: item.id,
-            item_name: item.name,
-            price: item.price,
-            item_category: item.category,
-            quantity: item.quantity
-          }))
-        });
-      }
+
 
       // Populate item rows
       cartItemsList.innerHTML = '';

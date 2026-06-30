@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organic Garden | Secure Botanical Checkout</title>
+  <meta name="description" content="Securely complete your billing and shipping information to place your Organic Garden seeds and live plants order.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Secure Checkout Page Custom Styles */
+    .checkout-header {
+      background: linear-gradient(135deg, var(--primary-pastel) 0%, #EFF6F2 100%);
+      padding: 80px 0 var(--spacing-lg);
+      text-align: center;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--spacing-xl);
+      margin-top: var(--spacing-xl);
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .checkout-container {
+      background-color: var(--bg-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .summary-card {
+      background-color: var(--bg-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 100px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-sm);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .price-row.total-row {
+      border-top: 1px solid var(--border-light);
+      padding-top: var(--spacing-md);
+      margin-top: var(--spacing-md);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary-forest);
+    }
+
+    .checkout-section-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--primary-forest);
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+
+    .checkout-section-title:first-of-type {
+      margin-top: 0;
+    }
+
+    .checkout-item-preview {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    @media (max-width: 992px) {
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+      .summary-card {
+        position: static;
+      }
+    }
+  </style>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TLDMJTZM');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLDMJTZM"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container header__nav">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" width="32" height="32">
+          <path d="M12 2C8 6.5 4 9 4 13a8 8 0 0 0 16 0c0-4-4-6.5-8-11z" fill="rgba(136, 178, 153, 0.4)"></path>
+          <path d="M12 22C6.48 22 2 17.52 2 12c0-3.1 1.7-6.07 4.45-8A1 1 0 0 1 7.7 5.5l-3.3 2.4C3.5 8.7 3 10.3 3 12c0 4.96 4.04 9 9 9s9-4.04 9-9c0-1.7-.5-3.3-1.4-4.1l-3.3-2.4a1 1 0 0 1 1.25-1.56C20.3 6 22 8.9 22 12c0 5.52-4.48 10-10 10z" fill="currentColor"></path>
+          <path d="M12 18v-8M9 13l3-3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>organic garden</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" id="link-home">Home</a></li>
+          <li><a href="products.html" id="link-products">Products</a></li>
+          <li><a href="about.html" id="link-about">About Us</a></li>
+          <li><a href="contact.html" id="link-contact">Contact Us</a></li>
+          <li><a href="gardening-cheatsheet.pdf" download class="btn-cheatsheet" id="link-cheatsheet"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Gardening Cheatsheet</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a href="cart.html" class="cart-btn" id="cart-btn" aria-label="Shopping Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge">0</span>
+        </a>
+        <div class="menu-toggle" id="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Checkout Header -->
+  <section class="checkout-header animate-fade-in-up">
+    <div class="container">
+      <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-family: var(--font-serif);">Secure Checkout</h1>
+      <p style="color: var(--text-muted);">Provide dispatch details and payment coordinates to secure your sprouts.</p>
+    </div>
+  </section>
+
+  <!-- Checkout Layout -->
+  <main class="container">
+    <div class="checkout-layout">
+      <!-- Left Column: Checkout Details Form -->
+      <section class="checkout-container animate-fade-in-up">
+        <form id="checkout-form" novalidate>
+          
+          <h2 class="checkout-section-title">1. Shipping &amp; Delivery Destination</h2>
+          
+          <!-- Recipient Name -->
+          <div class="form-group">
+            <label for="checkout-name" class="form-label">Full Name</label>
+            <input type="text" id="checkout-name" class="form-input" placeholder="Sumit Seal" required>
+            <div class="form-error-msg" id="chk-error-name" style="display: none;">Please provide recipient's full name.</div>
+          </div>
+
+          <!-- Shipping Address -->
+          <div class="form-group">
+            <label for="checkout-address" class="form-label">Shipping Address</label>
+            <input type="text" id="checkout-address" class="form-input" placeholder="45 Greenhouse Way, Sage Fields, Bengaluru, Karnataka, 560001" required>
+            <div class="form-error-msg" id="chk-error-address" style="display: none;">Please provide your shipping destination.</div>
+          </div>
+
+          <h2 class="checkout-section-title">2. Secure Card Payment Details</h2>
+
+          <!-- Secure Payment card -->
+          <div class="form-group">
+            <label for="checkout-card" class="form-label">Card Number</label>
+            <input type="text" id="checkout-card" class="form-input" placeholder="4111 2222 3333 4444" maxlength="19" required>
+            <div class="form-error-msg" id="chk-error-card" style="display: none;">Please provide a valid 16-digit card number.</div>
+          </div>
+
+          <div style="display: flex; gap: var(--spacing-md); margin-top: var(--spacing-md);">
+            <a href="cart.html" class="btn btn--outline" style="flex: 1; text-align: center; text-decoration: none;">Return to Cart</a>
+            <button type="submit" class="btn btn--primary" style="flex: 1;" id="confirm-order-btn">Confirm Order &amp; Dispatch</button>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- Right Column: Order Summary Sidebar -->
+      <aside class="summary-card animate-fade-in-up" style="animation-delay: 0.1s;">
+        <h3 style="font-size: 1.4rem; margin-bottom: var(--spacing-md); border-bottom: 1px solid var(--border-light); padding-bottom: var(--spacing-sm); color: var(--primary-forest);">Items Summary</h3>
+        
+        <div id="checkout-items-summary" style="margin-bottom: var(--spacing-md); border-bottom: 1px solid var(--border-light); padding-bottom: var(--spacing-sm);">
+          <!-- Dynamic short summary of cart items -->
+        </div>
+
+        <div class="price-row">
+          <span>Items Subtotal</span>
+          <span id="summary-subtotal">₹0.00</span>
+        </div>
+
+        <div class="price-row" id="promo-discount-row" style="display: none; color: var(--success); font-weight: 700;">
+          <span>Coupon Discount (10%)</span>
+          <span id="summary-discount">-₹0.00</span>
+        </div>
+
+        <div class="price-row">
+          <span>Shipping Fee</span>
+          <span id="summary-shipping">₹99.00</span>
+        </div>
+
+        <div class="price-row">
+          <span>Estimated GST (12%)</span>
+          <span id="summary-tax">₹0.00</span>
+        </div>
+
+        <div class="price-row total-row">
+          <span>Grand Total</span>
+          <span id="summary-total">₹0.00</span>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo" style="color: var(--bg-cream);">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M12 2C8 6.5 4 9 4 13a8 8 0 0 0 16 0c0-4-4-6.5-8-11z"></path>
+            </svg>
+            <span style="color: var(--bg-white);">organic garden</span>
+          </a>
+          <p class="footer-brand__desc">Promoting urban biodiversity, sustainable home cultivation, and organic green lifestyles with meticulously tested botanical products.</p>
+        </div>
+        <div>
+          <h4>Sitemap</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Seed &amp; Plant Catalog</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Support &amp; Help</h4>
+          <ul class="footer-links">
+            <li><a href="about.html#values">Sustainability Mission</a></li>
+            <li><a href="contact.html#faq">Growing Guides (FAQ)</a></li>
+            <li><a href="contact.html">Lifetime Assistance</a></li>
+            <li><a href="#">Shipping &amp; Returns Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Cultivate Community</h4>
+          <p class="footer-newsletter__desc">Sign up for greenhouse news and plant care schedules.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Organic Garden. All rights reserved. Created with love for organic agriculture.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cart = window.CartStore.get();
+
+      // 1. Redirect if cart is empty
+      if (cart.length === 0) {
+        window.location.href = 'cart.html';
+        return;
+      }
+
+      // 2. Fetch promo code discount percentage
+      const discountPct = parseFloat(sessionStorage.getItem('organic_garden_discount_pct') || '0');
+      
+      // Calculate totals
+      const subtotal = window.CartStore.subtotal();
+      const discount = subtotal * discountPct;
+      const isFreeShipping = subtotal >= 999;
+      const shipping = isFreeShipping ? 0 : 99;
+      const tax = (subtotal - discount) * 0.12;
+      const grandTotal = (subtotal - discount + shipping) * 1.12;
+
+      // Update UI Summaries
+      document.getElementById('summary-subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+      if (discount > 0) {
+        document.getElementById('promo-discount-row').style.display = 'flex';
+        document.getElementById('summary-discount').textContent = `-₹${discount.toFixed(2)}`;
+      }
+      document.getElementById('summary-shipping').textContent = shipping === 0 ? 'Free' : `₹${shipping.toFixed(2)}`;
+      document.getElementById('summary-tax').textContent = `₹${tax.toFixed(2)}`;
+      document.getElementById('summary-total').textContent = `₹${grandTotal.toFixed(2)}`;
+
+      // Render Item Previews
+      const itemsContainer = document.getElementById('checkout-items-summary');
+      itemsContainer.innerHTML = '';
+      cart.forEach(item => {
+        const itemRow = document.createElement('div');
+        itemRow.className = 'checkout-item-preview';
+        itemRow.innerHTML = `
+          <span>${item.name} &times; ${item.quantity}</span>
+          <span>₹${(item.price * item.quantity).toFixed(2)}</span>
+        `;
+        itemsContainer.appendChild(itemRow);
+      });
+
+      // 3. Trigger begin_checkout GA4/GTM event on load
+      if (window.trackEcommerceEvent) {
+        window.trackEcommerceEvent('begin_checkout', {
+          currency: 'INR',
+          value: subtotal,
+          items: cart.map(item => ({
+            item_id: item.id,
+            item_name: item.name,
+            price: item.price,
+            item_category: item.category,
+            quantity: item.quantity
+          }))
+        });
+      }
+
+      // 4. Input element references
+      const chkForm = document.getElementById('checkout-form');
+      const chkName = document.getElementById('checkout-name');
+      const chkAddress = document.getElementById('checkout-address');
+      const chkCard = document.getElementById('checkout-card');
+
+      // Clear error states on user input
+      [chkName, chkAddress, chkCard].forEach(input => {
+        input.addEventListener('input', () => {
+          input.classList.remove('error');
+          const errId = `chk-error-${input.id.split('-').pop()}`;
+          document.getElementById(errId).style.display = 'none';
+        });
+      });
+
+      // Format credit card spaces
+      chkCard.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+        let formatted = '';
+        for (let i = 0; i < val.length; i++) {
+          if (i > 0 && i % 4 === 0) formatted += ' ';
+          formatted += val[i];
+        }
+        e.target.value = formatted;
+      });
+
+      // Form Submission
+      chkForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        if (chkName.value.trim().length < 2) {
+          chkName.classList.add('error');
+          document.getElementById('chk-error-name').style.display = 'block';
+          isValid = false;
+        }
+
+        if (chkAddress.value.trim().length < 8) {
+          chkAddress.classList.add('error');
+          document.getElementById('chk-error-address').style.display = 'block';
+          isValid = false;
+        }
+
+        if (chkCard.value.replace(/\s+/g, '').length !== 16) {
+          chkCard.classList.add('error');
+          document.getElementById('chk-error-card').style.display = 'block';
+          isValid = false;
+        }
+
+        if (isValid) {
+          const finalReceipt = {
+            name: chkName.value.trim(),
+            address: chkAddress.value.trim(),
+            subtotal: subtotal,
+            discount: discount,
+            shipping: shipping,
+            tax: tax,
+            total: grandTotal,
+            items: cart
+          };
+
+          sessionStorage.setItem('organic_garden_receipt', JSON.stringify(finalReceipt));
+          window.CartStore.clear();
+          window.location.href = 'thankyou.html';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
