@@ -300,8 +300,19 @@
       }
     }
   </style>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TLDMJTZM');</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLDMJTZM"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- Header Navigation -->
   <header class="header">
@@ -321,7 +332,7 @@
           <li><a href="products.html" id="link-products">Products</a></li>
           <li><a href="about.html" id="link-about">About Us</a></li>
           <li><a href="contact.html" id="link-contact">Contact Us</a></li>
-          <li><a href="gardening-cheatsheet.pdf" download class="btn-cheatsheet" id="link-cheatsheet"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Gardening Cheatsheet</a></li>
+          <li><a href="/gardening-cheatsheet.pdf" download class="btn-cheatsheet" id="link-cheatsheet"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Gardening Cheatsheet</a></li>
         </ul>
       </nav>
 
@@ -484,7 +495,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
   <script>
     // Cart Render & Secure checkout Form Controller
     let hasAppliedPromo = false;
@@ -516,6 +527,22 @@
         promoStatus.textContent = 'Promo code "ORGANIC10" restored successfully!';
       }
       renderCartView();
+
+      // Trigger GTM view_cart event on page load if cart has items
+      const cart = window.CartStore.get();
+      if (cart.length > 0 && window.trackEcommerceEvent) {
+        window.trackEcommerceEvent('view_cart', {
+          currency: 'INR',
+          value: window.CartStore.subtotal(),
+          items: cart.map(item => ({
+            item_id: item.id,
+            item_name: item.name,
+            price: item.price,
+            item_category: item.category,
+            quantity: item.quantity
+          }))
+        });
+      }
 
       // Listen to central store updates to re-render in real time
       window.addEventListener('cartUpdated', renderCartView);

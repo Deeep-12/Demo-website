@@ -528,6 +528,22 @@
       }
       renderCartView();
 
+      // Trigger GTM view_cart event on page load if cart has items
+      const cart = window.CartStore.get();
+      if (cart.length > 0 && window.trackEcommerceEvent) {
+        window.trackEcommerceEvent('view_cart', {
+          currency: 'INR',
+          value: window.CartStore.subtotal(),
+          items: cart.map(item => ({
+            item_id: item.id,
+            item_name: item.name,
+            price: item.price,
+            item_category: item.category,
+            quantity: item.quantity
+          }))
+        });
+      }
+
       // Listen to central store updates to re-render in real time
       window.addEventListener('cartUpdated', renderCartView);
     });

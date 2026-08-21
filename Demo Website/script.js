@@ -132,17 +132,59 @@ const CartStore = {
 
   remove(productId) {
     let cart = this.get();
+    const itemToRemove = cart.find(item => item.id === productId);
     cart = cart.filter(item => item.id !== productId);
     this.set(cart);
     this.animateBadge();
+
+    // Trigger remove_from_cart tracking event
+    if (itemToRemove && window.trackEcommerceEvent) {
+      window.trackEcommerceEvent('remove_from_cart', {
+        currency: 'INR',
+        value: itemToRemove.price * itemToRemove.quantity,
+        items: [
+          {
+            item_id: itemToRemove.id,
+            item_name: itemToRemove.name,
+            price: itemToRemove.price,
+            item_category: itemToRemove.category,
+            quantity: itemToRemove.quantity
+          }
+        ]
+      });
+    }
   },
 
   updateQty(productId, qty) {
     const cart = this.get();
     const item = cart.find(item => item.id === productId);
     if (item) {
-      item.quantity = Math.max(1, parseInt(qty) || 1);
-      this.set(cart);
+      const oldQty = item.quantity;
+      const newQty = Math.max(1, parseInt(qty) || 1);
+      if (oldQty !== newQty) {
+        item.quantity = newQty;
+        this.set(cart);
+
+        // Trigger add_to_cart or remove_from_cart based on difference
+        if (window.trackEcommerceEvent) {
+          const diff = newQty - oldQty;
+          const eventName = diff > 0 ? 'add_to_cart' : 'remove_from_cart';
+          const absDiff = Math.abs(diff);
+          window.trackEcommerceEvent(eventName, {
+            currency: 'INR',
+            value: item.price * absDiff,
+            items: [
+              {
+                item_id: item.id,
+                item_name: item.name,
+                price: item.price,
+                item_category: item.category,
+                quantity: absDiff
+              }
+            ]
+          });
+        }
+      }
     }
   },
 
@@ -360,11 +402,16 @@ window.trackEcommerceEvent = function(eventName, ecommerceData) {
   // Clear the previous ecommerce object to prevent parameter leakage
   window.dataLayer.push({ ecommerce: null });
   
-  // Compute comma-separated list of item names
+  // Compute comma-separated list of item names and IDs
   let itemNames = '';
+  let itemIds = '';
   if (ecommerceData.items && ecommerceData.items.length) {
     itemNames = ecommerceData.items.map(function(item) {
       return item.item_name || item.name;
+    }).join(', ');
+    
+    itemIds = ecommerceData.items.map(function(item) {
+      return item.item_id || item.id;
     }).join(', ');
   }
   
@@ -375,6 +422,7 @@ window.trackEcommerceEvent = function(eventName, ecommerceData) {
     value: ecommerceData.value,
     items: ecommerceData.items,
     item_names: itemNames,
+    item_ids: itemIds,
     ...ecommerceData,
     ecommerce: ecommerceData
   };
