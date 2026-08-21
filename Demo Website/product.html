@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organic Garden | Botanical Detail</title>
+  <meta name="description" content="Detailed horticultural features, specifications, and growth guidelines for premium Organic Garden botanicals.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Premium Product Page Custom Styling */
+    .product-page-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--spacing-xl);
+      margin-top: 100px;
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .gallery-container {
+      display: flex;
+      gap: var(--spacing-md);
+    }
+
+    .thumbnail-column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .thumb-btn {
+      width: 80px;
+      height: 80px;
+      border: 1px solid var(--border-light);
+      background-color: var(--bg-white);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-xs);
+      transition: var(--transition-normal);
+    }
+
+    .thumb-btn:hover, .thumb-btn.active {
+      border-color: var(--primary-forest);
+      background-color: var(--primary-pastel);
+      transform: scale(1.03);
+    }
+
+    .thumb-btn svg, .thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+    }
+
+    .main-image-viewport {
+      flex-grow: 1;
+      height: 480px;
+      background-color: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .main-image-viewport img, .main-image-viewport svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      max-height: 400px;
+      transition: transform 0.4s ease;
+    }
+
+    .main-image-viewport:hover img, .main-image-viewport:hover svg {
+      transform: scale(1.05);
+    }
+
+    /* Details styling */
+    .product-meta-header {
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .product-badge {
+      display: inline-block;
+      padding: 0.35rem 0.8rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: var(--primary-forest);
+      background-color: var(--primary-pastel);
+      border-radius: 100px;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .rating-summary-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      margin-top: var(--spacing-xs);
+    }
+
+    .star-icon {
+      width: 18px;
+      height: 18px;
+      fill: #E9B862;
+    }
+
+    .price-details {
+      display: flex;
+      align-items: baseline;
+      gap: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+    }
+
+    .price-current {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary-forest);
+    }
+
+    .price-original {
+      font-size: 1.3rem;
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    /* Attributes & Options Selection */
+    .attribute-section {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .attribute-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary-forest);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--spacing-xs);
+      display: block;
+    }
+
+    .chip-group {
+      display: flex;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+    }
+
+    .chip-btn {
+      padding: 0.7rem var(--spacing-md);
+      border: 1px solid var(--border-light);
+      background-color: var(--bg-white);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .chip-btn:hover {
+      border-color: var(--primary-sage);
+      background-color: var(--bg-cream);
+    }
+
+    .chip-btn.active {
+      border-color: var(--primary-forest);
+      background-color: var(--primary-forest);
+      color: var(--bg-cream);
+    }
+
+    /* Actions */
+    .actions-row {
+      display: flex;
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .qty-box {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-white);
+      overflow: hidden;
+      width: 120px;
+    }
+
+    .qty-input-btn {
+      width: 35px;
+      height: 48px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-forest);
+      transition: var(--transition-fast);
+    }
+
+    .qty-input-btn:hover {
+      background-color: var(--primary-pastel);
+    }
+
+    .qty-val-display {
+      flex-grow: 1;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* Offers Box */
+    .offers-container {
+      background-color: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .offer-item {
+      display: flex;
+      gap: var(--spacing-sm);
+      font-size: 0.85rem;
+      margin-bottom: var(--spacing-sm);
+      line-height: 1.5;
+    }
+
+    .offer-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .offer-icon {
+      color: var(--success);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* Detail Tabs Section */
+    .tabs-wrapper {
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .tabs-header {
+      display: flex;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .tab-header-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition-fast);
+    }
+
+    .tab-header-btn.active {
+      color: var(--primary-forest);
+    }
+
+    .tab-header-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background-color: var(--primary-forest);
+      border-radius: 4px;
+    }
+
+    .tab-content-panel {
+      display: none;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .tab-content-panel.active {
+      display: block;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    /* Reviews section */
+    .reviews-container {
+      background-color: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .reviews-header {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: var(--spacing-xl);
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .review-score-box {
+      text-align: center;
+      background-color: var(--bg-cream);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--border-light);
+    }
+
+    .score-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--primary-forest);
+      line-height: 1;
+    }
+
+    .reviews-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    .review-card {
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: var(--spacing-md);
+    }
+
+    .review-card:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .review-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .reviewer-name {
+      font-weight: 700;
+      color: var(--primary-forest);
+    }
+
+    .review-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .product-page-layout {
+        grid-template-columns: 1fr;
+      }
+      .gallery-container {
+        flex-direction: column-reverse;
+      }
+      .thumbnail-column {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+      }
+      .reviews-header {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+    }
+  </style>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TLDMJTZM');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLDMJTZM"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container header__nav">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" width="32" height="32">
+          <path d="M12 2C8 6.5 4 9 4 13a8 8 0 0 0 16 0c0-4-4-6.5-8-11z" fill="rgba(136, 178, 153, 0.4)"></path>
+          <path d="M12 22C6.48 22 2 17.52 2 12c0-3.1 1.7-6.07 4.45-8A1 1 0 0 1 7.7 5.5l-3.3 2.4C3.5 8.7 3 10.3 3 12c0 4.96 4.04 9 9 9s9-4.04 9-9c0-1.7-.5-3.3-1.4-4.1l-3.3-2.4a1 1 0 0 1 1.25-1.56C20.3 6 22 8.9 22 12c0 5.52-4.48 10-10 10z" fill="currentColor"></path>
+          <path d="M12 18v-8M9 13l3-3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>organic garden</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" id="link-home">Home</a></li>
+          <li><a href="products.html" id="link-products">Products</a></li>
+          <li><a href="about.html" id="link-about">About Us</a></li>
+          <li><a href="contact.html" id="link-contact">Contact Us</a></li>
+          <li><a href="/gardening-cheatsheet.pdf" download class="btn-cheatsheet" id="link-cheatsheet"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Gardening Cheatsheet</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a href="cart.html" class="cart-btn" id="cart-btn" aria-label="Shopping Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge">0</span>
+        </a>
+        <div class="menu-toggle" id="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Product Detail Layout -->
+  <main class="container">
+    <div class="product-page-layout">
+      
+      <!-- Left Column: Gallery -->
+      <section class="gallery-container animate-fade-in-up">
+        <!-- Thumbnail strip -->
+        <div class="thumbnail-column" id="gallery-thumbs">
+          <!-- Thumbnail buttons will be populated dynamically -->
+        </div>
+        <!-- Main full view viewport -->
+        <div class="main-image-viewport" id="gallery-main-view">
+          <!-- Main active image/SVG will be placed here -->
+        </div>
+      </section>
+
+      <!-- Right Column: Product Meta and buying tools -->
+      <section class="details-container animate-fade-in-up" style="animation-delay: 0.1s;">
+        <div class="product-meta-header">
+          <span class="product-badge" id="meta-badge">Botanical</span>
+          <h1 style="font-size: 2.3rem; margin-top: 4px; margin-bottom: 8px;" id="meta-title">French Lavender Seeds</h1>
+          <div class="rating-summary-row">
+            <div style="display:flex; align-items:center; gap:2px;" id="meta-star-display">
+              <!-- Stars injected here -->
+            </div>
+            <span style="font-weight: 700; color: var(--text-dark); font-size:0.95rem; margin-left:4px;" id="meta-rating-num">4.9</span>
+            <span style="color: var(--text-muted); font-size: 0.9rem;" id="meta-review-count">(128 reviews)</span>
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="price-details">
+          <span class="price-current" id="meta-price">₹149.00</span>
+          <span class="price-original" id="meta-original-price">₹199.00</span>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: var(--spacing-lg); font-size: 1.02rem; line-height:1.7;" id="meta-desc">
+          Bring natural beauty and sweet lavender fragrance to your garden. High viability non-GMO organic heirloom seeds.
+        </p>
+
+        <!-- Sizing Options -->
+        <div class="attribute-section">
+          <span class="attribute-label" id="attribute-type-label">Select Options</span>
+          <div class="chip-group" id="size-chips-container">
+            <!-- Dynamic choice chips will be populated here -->
+          </div>
+        </div>
+
+        <!-- Offers Box -->
+        <div class="offers-container">
+          <h4 style="font-family: var(--font-sans); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: var(--primary-forest); margin-bottom: var(--spacing-sm); letter-spacing:0.05em;">Special Active Offers</h4>
+          <div class="offer-item">
+            <span class="offer-icon">🏷️</span>
+            <span>Get <strong>10% OFF</strong> instantly! Use code <strong>ORGANIC10</strong> at cart check out.</span>
+          </div>
+          <div class="offer-item">
+            <span class="offer-icon">🚚</span>
+            <span>Free Standard Shipping on all order subtotals above <strong>₹999.00</strong>.</span>
+          </div>
+          <div class="offer-item">
+            <span class="offer-icon">🌱</span>
+            <span><strong>Lifetime Advice:</strong> Access free grower support and seed diagnostics with our botanists.</span>
+          </div>
+        </div>
+
+        <!-- Buy triggers -->
+        <div class="actions-row">
+          <div class="qty-box">
+            <button class="qty-input-btn" id="qty-minus">&minus;</button>
+            <span class="qty-val-display" id="qty-display">1</span>
+            <button class="qty-input-btn" id="qty-plus">+</button>
+          </div>
+          <button class="btn btn--primary" style="flex-grow:1; display:flex; align-items:center; justify-content:center; gap:var(--spacing-sm); font-size:1.05rem;" id="buy-now-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            Buy Now
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Details Tab Section -->
+    <section class="tabs-wrapper animate-fade-in-up" style="animation-delay: 0.2s;">
+      <div class="tabs-header">
+        <button class="tab-header-btn active" data-tab="tab-desc">Horticultural Profile</button>
+        <button class="tab-header-btn" data-tab="tab-care">Sowing &amp; Care Details</button>
+        <button class="tab-header-btn" data-tab="tab-shipping">Sourcing &amp; Dispatch</button>
+      </div>
+
+      <!-- Tab 1 -->
+      <div class="tab-content-panel active" id="tab-desc">
+        <p style="margin-bottom:var(--spacing-md);">Our carefully selected botanical strains represent the finest qualities in growth viability, fragrance, and visual aesthetics. We harvest all elements at peak maturity from organic partners who follow deep ecological, soil-enriching practices. Each seed pack is hermetically sealed to preserve the germination capacity for up to 3 seasons, and live plants are shipped in compostable starter pots to reduce transition shock.</p>
+        <ul style="padding-left: var(--spacing-lg); margin-bottom: var(--spacing-md); display:grid; grid-template-columns: 1fr 1fr; gap:6px;">
+          <li><strong>Organic Status:</strong> 100% Non-GMO, Organic Verified</li>
+          <li><strong>Pollinator Magnet:</strong> Invites beneficial bees and butterflies</li>
+          <li><strong>Viability Range:</strong> 85% to 95% germination success</li>
+          <li><strong>Growth Speed:</strong> Rapid adaptation and root development</li>
+        </ul>
+      </div>
+
+      <!-- Tab 2 -->
+      <div class="tab-content-panel" id="tab-care">
+        <p style="margin-bottom:var(--spacing-md);">Successful growth begins with the right environmental conditions. Ensure that your growing medium is light, well-draining, and rich in mature compost.</p>
+        <ul style="padding-left: var(--spacing-lg); margin-bottom: var(--spacing-md); display:flex; flex-direction:column; gap:8px;">
+          <li>🌞 <strong>Sunlight coordinates:</strong> Requires a minimum of 5-6 hours of daily partial-to-full sunlight exposure.</li>
+          <li>💧 <strong>Watering schedule:</strong> Keep the soil consistently moist but never waterlogged. Dampen directly around the root root base.</li>
+          <li>🌱 <strong>Sowing Depth:</strong> Plant seeds roughly 1/8 inch deep in starting trays. Keep trays in warm, indirect light till sprouts appear.</li>
+        </ul>
+      </div>
+
+      <!-- Tab 3 -->
+      <div class="tab-content-panel" id="tab-shipping">
+        <p style="margin-bottom:var(--spacing-md);">We deliver all orders using dedicated horticultural shipping channels to ensure that plants and delicate seeds arrive in optimal condition.</p>
+        <ul style="padding-left: var(--spacing-lg); margin-bottom: var(--spacing-md); display:flex; flex-direction:column; gap:6px;">
+          <li>🚚 <strong>Fast Dispatch:</strong> Orders are processed and packed in 1-2 business days.</li>
+          <li>📦 <strong>Eco Packaging:</strong> We use recycled, compostable boxes and natural starch filler to cushion the products.</li>
+          <li>📍 <strong>Grower Guarantee:</strong> If your plant arrives damaged or seeds fail to germinate under recommended care, get a free replacement!</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-container animate-fade-in-up" style="animation-delay: 0.3s;">
+      <h3 style="font-size: 1.8rem; border-bottom: 1px solid var(--border-light); padding-bottom: var(--spacing-sm); margin-bottom: var(--spacing-lg); color:var(--primary-forest);">Grower Reviews &amp; Success Stories</h3>
+      
+      <div class="reviews-header">
+        <div class="review-score-box">
+          <div class="score-number" id="reviews-score-number">4.9</div>
+          <div style="display:flex; align-items:center; justify-content:center; gap:2px; margin: 6px 0;" id="reviews-stars-display">
+            <!-- Stars -->
+          </div>
+          <span style="font-size:0.85rem; color:var(--text-muted);" id="reviews-total-text">Based on 128 verified ratings</span>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px; justify-content:center;">
+          <!-- Custom bars representation of star distributions -->
+          <div style="display:flex; align-items:center; gap:8px; font-size:0.85rem;">
+            <span style="width:40px; font-weight:700;">5 Stars</span>
+            <div style="flex-grow:1; height:8px; background-color:var(--border-light); border-radius:10px; overflow:hidden;">
+              <div style="height:100%; background-color:#E9B862; width:88%;"></div>
+            </div>
+            <span style="width:30px; text-align:right; color:var(--text-muted);">88%</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:0.85rem;">
+            <span style="width:40px; font-weight:700;">4 Stars</span>
+            <div style="flex-grow:1; height:8px; background-color:var(--border-light); border-radius:10px; overflow:hidden;">
+              <div style="height:100%; background-color:#E9B862; width:10%;"></div>
+            </div>
+            <span style="width:30px; text-align:right; color:var(--text-muted);">10%</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:0.85rem;">
+            <span style="width:40px; font-weight:700;">3 Stars</span>
+            <div style="flex-grow:1; height:8px; background-color:var(--border-light); border-radius:10px; overflow:hidden;">
+              <div style="height:100%; background-color:#E9B862; width:2%;"></div>
+            </div>
+            <span style="width:30px; text-align:right; color:var(--text-muted);">2%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Individual Review Cards -->
+      <div class="reviews-list" id="reviews-list-container">
+        <!-- Dynamic Reviews will be placed here -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo" style="color: var(--bg-cream);">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M12 2C8 6.5 4 9 4 13a8 8 0 0 0 16 0c0-4-4-6.5-8-11z"></path>
+            </svg>
+            <span style="color: var(--bg-white);">organic garden</span>
+          </a>
+          <p class="footer-brand__desc">Promoting urban biodiversity, sustainable home cultivation, and organic green lifestyles with meticulously tested botanical products.</p>
+        </div>
+        <div>
+          <h4>Sitemap</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Seed &amp; Plant Catalog</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Support &amp; Help</h4>
+          <ul class="footer-links">
+            <li><a href="about.html#values">Sustainability Mission</a></li>
+            <li><a href="contact.html#faq">Growing Guides (FAQ)</a></li>
+            <li><a href="contact.html">Lifetime Assistance</a></li>
+            <li><a href="#">Shipping &amp; Returns Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Cultivate Community</h4>
+          <p class="footer-newsletter__desc">Sign up for greenhouse news and plant care schedules.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Organic Garden. All rights reserved. Created with love for organic agriculture.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="script.js"></script>
+  <script>
+    // Mock reviews library for high-fidelity categorization
+    const REVIEW_MOCKS = {
+      Seeds: [
+        { name: "Ananya R.", rating: 5, date: "August 12, 2026", text: "Incredibly high germination rate! Sowed these seeds in starter cups and they sprouted in less than 4 days. They are growing robustly in my balcony garden now." },
+        { name: "Rahul S.", rating: 5, date: "July 29, 2026", text: "The heirloom status shows. Healthy green foliage and beautiful aroma. Very satisfied with the packaging too. Recommended for city growers." },
+        { name: "Pooja M.", rating: 4, date: "June 15, 2026", text: "Good seed quality. Almost all of them germinated. Sowing deep directions in the tab were really helpful. Will buy other seeds too!" }
+      ],
+      Plants: [
+        { name: "Karthik D.", rating: 5, date: "August 05, 2026", text: "Arrived in immaculate condition. The soil was still moist and root bundle was completely protected in the coco pot. Fits beautifully in my living room." },
+        { name: "Sneha G.", rating: 5, date: "July 18, 2026", text: "Stunning vibrant foliage. I've had it for three weeks now and it has already put out two brand new leaf shoots. Excellent horticultural quality!" },
+        { name: "Meera K.", rating: 4, date: "June 27, 2026", text: "A beautiful addition to my home. Shipping was fast. Sourcing is organic and sustainable. I reached out to support and got excellent advice." }
+      ],
+      Essentials: [
+        { name: "Amit P.", rating: 5, date: "August 20, 2026", text: "Absolute premium design! It looks like an antique brass watering piece. Very functional narrow spout that reaches directly between plant foliage." },
+        { name: "Tanvi S.", rating: 5, date: "July 10, 2026", text: "Highly durable. I use the organic seaweed liquid concentrate too and my plants are thriving. Well crafted design and worth every rupee." },
+        { name: "Vikram R.", rating: 4, date: "June 04, 2026", text: "Very premium and solid. Packaging was excellent. Great utility for small potting pots in a balcony." }
+      ]
+    };
+
+    // Size category matrices
+    const SIZE_SCHEMES = {
+      Seeds: ["Standard Pack (50 seeds)", "Large Pack (150 seeds)", "Grower Pack (500 seeds)"],
+      Plants: ["Small (6\" Clay Pot)", "Medium (8\" Ceramic Pot)", "Large (10\" Standing Pot)"],
+      Essentials: ["Standard Size", "Premium Pack"]
+    };
+
+    let activeProduct = null;
+    let selectedQuantity = 1;
+    let selectedSize = "";
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Resolve Product ID from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id') || 'p1';
+      
+      const checkDatabase = () => {
+        if (window.PRODUCTS_DB) {
+          activeProduct = window.PRODUCTS_DB.find(item => item.id === productId);
+          if (!activeProduct) {
+            window.location.href = 'products.html';
+            return;
+          }
+          initializeProductPage();
+        } else {
+          // Retry in case module script takes slightly longer
+          setTimeout(checkDatabase, 50);
+        }
+      };
+      
+      checkDatabase();
+    });
+
+    // Main setup
+    function initializeProductPage() {
+      // Set title and description dynamically
+      document.title = `Organic Garden | Buy ${activeProduct.name}`;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', activeProduct.description);
+
+      // Populate basic metadata
+      document.getElementById('meta-badge').textContent = activeProduct.badge || activeProduct.category;
+      document.getElementById('meta-title').textContent = activeProduct.name;
+      document.getElementById('meta-desc').textContent = activeProduct.description;
+      document.getElementById('meta-rating-num').textContent = activeProduct.rating.toFixed(1);
+      document.getElementById('meta-review-count').textContent = `(${activeProduct.reviews} reviews)`;
+      document.getElementById('meta-price').textContent = `₹${activeProduct.price.toFixed(2)}`;
+      
+      // Calculate a mockup original price (25% higher)
+      const originalPrice = activeProduct.price / 0.75;
+      document.getElementById('meta-original-price').textContent = `₹${originalPrice.toFixed(2)}`;
+
+      // Generate stars markup
+      const starsDisplay = document.getElementById('meta-star-display');
+      const reviewsStarsDisplay = document.getElementById('reviews-stars-display');
+      starsDisplay.innerHTML = '';
+      reviewsStarsDisplay.innerHTML = '';
+      
+      const fullStars = Math.floor(activeProduct.rating);
+      for (let i = 0; i < 5; i++) {
+        const star = document.createElement('svg');
+        star.setAttribute('viewBox', '0 0 24 24');
+        star.classList.add('star-icon');
+        star.innerHTML = '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>';
+        if (i >= fullStars) {
+          star.style.fill = 'var(--border-light)';
+        }
+        starsDisplay.appendChild(star.cloneNode(true));
+        reviewsStarsDisplay.appendChild(star.cloneNode(true));
+      }
+
+      document.getElementById('reviews-score-number').textContent = activeProduct.rating.toFixed(1);
+      document.getElementById('reviews-total-text').textContent = `Based on ${activeProduct.reviews} verified ratings`;
+
+      // Set up Image Gallery
+      setupImageGallery();
+
+      // Set up Size Options chips
+      setupSizeChips();
+
+      // Set up Quantity handlers
+      setupQuantityHandlers();
+
+      // Set up tabs
+      setupTabs();
+
+      // Set up Reviews list
+      setupReviews();
+
+      // Trigger GTM view_item event!
+      if (window.trackEcommerceEvent) {
+        window.trackEcommerceEvent('view_item', {
+          currency: 'INR',
+          value: activeProduct.price,
+          items: [
+            {
+              item_id: activeProduct.id,
+              item_name: activeProduct.name,
+              price: activeProduct.price,
+              item_category: activeProduct.category,
+              quantity: 1
+            }
+          ]
+        });
+      }
+
+      // Bind Buy Now button redirect trigger
+      document.getElementById('buy-now-btn').addEventListener('click', () => {
+        // 1. Add product to CartStore
+        if (window.CartStore) {
+          const cartItem = {
+            id: activeProduct.id,
+            name: activeProduct.name + (selectedSize ? ` - ${selectedSize}` : ""),
+            price: activeProduct.price,
+            category: activeProduct.category,
+            imageSvg: activeProduct.imageSvg,
+            quantity: selectedQuantity
+          };
+          window.CartStore.add(cartItem);
+          
+          // 2. Redirect straight to checkout
+          window.location.href = 'checkout.html';
+        }
+      });
+    }
+
+    // Interactive Image Gallery Swapper
+    function setupImageGallery() {
+      const thumbsContainer = document.getElementById('gallery-thumbs');
+      const mainViewport = document.getElementById('gallery-main-view');
+
+      thumbsContainer.innerHTML = '';
+      
+      // We will create 3 alternate views (Main, Care Details/Close-up, Mockup box)
+      const views = [
+        { type: 'main', content: activeProduct.imageSvg },
+        { type: 'care', content: generateSecondaryView(activeProduct, 'care') },
+        { type: 'box', content: generateSecondaryView(activeProduct, 'box') }
+      ];
+
+      mainViewport.innerHTML = views[0].content;
+
+      views.forEach((view, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `thumb-btn ${idx === 0 ? 'active' : ''}`;
+        btn.innerHTML = view.content;
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          mainViewport.innerHTML = view.content;
+        });
+        thumbsContainer.appendChild(btn);
+      });
+    }
+
+    // Generate alternative visual SVGs for thumbnails so we don't have broken images
+    function generateSecondaryView(product, mode) {
+      // If the main image is a real image tag, we can reuse it, or display a beautiful icon/detailed mockup box SVG
+      if (product.imageSvg.includes('<img') && mode === 'care') {
+        return product.imageSvg.replace('product-art', 'product-art-zoomed');
+      }
+
+      if (mode === 'care') {
+        return `
+          <svg viewBox="0 0 120 120" fill="none" stroke="var(--primary-forest)" stroke-width="2">
+            <rect x="15" y="15" width="90" height="90" rx="8" fill="var(--accent-wheat)" opacity="0.4" />
+            <path d="M60 90 C60 65, 45 55, 50 35 Q 52 28, 60 25" stroke="#1F3F30" stroke-width="3" stroke-linecap="round" />
+            <circle cx="60" cy="22" r="5" fill="#E9B862" />
+            <text x="60" y="110" font-size="8" font-weight="800" text-anchor="middle" fill="var(--primary-forest)">Sowing Zoom</text>
+          </svg>
+        `;
+      }
+      // Packaging Box View
+      return `
+        <svg viewBox="0 0 120 120" fill="none" stroke="var(--primary-forest)" stroke-width="2">
+          <rect x="25" y="45" width="70" height="50" rx="4" fill="var(--accent-blush)" />
+          <path d="M25 45 L60 20 L95 45 Z" fill="var(--primary-pastel)" />
+          <line x1="60" y1="20" x2="60" y2="95" stroke="var(--primary-forest)" stroke-dasharray="2 2" />
+          <text x="60" y="75" font-size="8" font-weight="800" text-anchor="middle" fill="var(--primary-forest)">Pack Mockup</text>
+        </svg>
+      `;
+    }
+
+    // Size Selection Setup
+    function setupSizeChips() {
+      const label = document.getElementById('attribute-type-label');
+      const container = document.getElementById('size-chips-container');
+      container.innerHTML = '';
+
+      const category = activeProduct.category || "Seeds";
+      label.textContent = category === "Seeds" ? "Select seed packet volume" : (category === "Plants" ? "Select plant pot size" : "Options");
+      
+      const sizes = SIZE_SCHEMES[category] || SIZE_SCHEMES.Seeds;
+      selectedSize = sizes[0]; // Set default
+
+      sizes.forEach((size, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `chip-btn ${idx === 0 ? 'active' : ''}`;
+        btn.textContent = size;
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          selectedSize = size;
+        });
+        container.appendChild(btn);
+      });
+    }
+
+    // Quantity Counter Handlers
+    function setupQuantityHandlers() {
+      const minus = document.getElementById('qty-minus');
+      const plus = document.getElementById('qty-plus');
+      const display = document.getElementById('qty-display');
+
+      minus.addEventListener('click', () => {
+        if (selectedQuantity > 1) {
+          selectedQuantity--;
+          display.textContent = selectedQuantity;
+        }
+      });
+
+      plus.addEventListener('click', () => {
+        selectedQuantity++;
+        display.textContent = selectedQuantity;
+      });
+    }
+
+    // Sowing and Shipping Information Tab Controls
+    function setupTabs() {
+      const tabs = document.querySelectorAll('.tab-header-btn');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const targetId = tab.getAttribute('data-tab');
+          document.querySelectorAll('.tab-content-panel').forEach(panel => {
+            panel.classList.remove('active');
+          });
+          document.getElementById(targetId).classList.add('active');
+        });
+      });
+    }
+
+    // Reviews list populating
+    function setupReviews() {
+      const container = document.getElementById('reviews-list-container');
+      container.innerHTML = '';
+      
+      const cat = activeProduct.category || "Seeds";
+      const reviews = REVIEW_MOCKS[cat] || REVIEW_MOCKS.Seeds;
+
+      reviews.forEach(rev => {
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        
+        let stars = '';
+        for (let i = 0; i < 5; i++) {
+          stars += `<svg viewBox="0 0 24 24" class="star-icon" style="width:14px; height:14px; ${i >= rev.rating ? 'fill:var(--border-light);' : ''}"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>`;
+        }
+
+        card.innerHTML = `
+          <div class="review-card-meta">
+            <span class="reviewer-name">${rev.name}</span>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">${rev.date}</span>
+          </div>
+          <div style="display:flex; gap:1px; margin-bottom: 6px;">${stars}</div>
+          <p class="review-text">${rev.text}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>

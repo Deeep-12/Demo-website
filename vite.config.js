@@ -11,6 +11,7 @@ export default defineConfig({
         checkout: resolve(__dirname, 'checkout.html'),
         contact: resolve(__dirname, 'contact.html'),
         products: resolve(__dirname, 'products.html'),
+        product: resolve(__dirname, 'product.html'),
         thankyou: resolve(__dirname, 'thankyou.html')
       }
     }
